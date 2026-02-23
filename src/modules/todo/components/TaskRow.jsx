@@ -4,8 +4,9 @@ import CompletePicker from './CompletePicker'
 function formatDueDay(due_day) {
   if (!due_day) return null
   const [year, month, day] = due_day.split('-').map(Number)
-  const date = new Date(year, month - 1, day)
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+  const dd = String(day).padStart(2, '0')
+  const mm = String(month).padStart(2, '0')
+  return `${dd}/${mm}/${year}`
 }
 
 export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
@@ -270,7 +271,7 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
               <div className="flex-1 min-w-0 flex items-center gap-2">
                 <p className="text-sm font-medium text-[var(--text-primary)] truncate">{task.title}</p>
                 {formattedDue && (
-                  <span className="text-xs text-[var(--text-muted)] shrink-0">{formattedDue}</span>
+                  <span className="text-xs text-[var(--text-muted)] shrink-0">Due: {formattedDue}</span>
                 )}
               </div>
 
