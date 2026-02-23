@@ -48,10 +48,6 @@ export default function TodoView({ auth }) {
           <div className="flex justify-center pt-16">
             <div className="w-8 h-8 border-4 border-[var(--spinner-track)] border-t-[var(--spinner-head)] rounded-full animate-spin" />
           </div>
-        ) : activeTasks.length === 0 ? (
-          <p className="text-center text-[var(--text-muted)] text-sm pt-12">
-            No active tasks. Add one below.
-          </p>
         ) : (
           <div className="mt-2">
             {(() => {
@@ -59,29 +55,25 @@ export default function TodoView({ auth }) {
               const standard = activeTasks.filter(t => !t.is_priority)
               return (
                 <>
-                  {urgent.length > 0 && (
-                    <>
-                      <div className="px-4 py-1.5 flex items-center gap-2">
-                        <span className="text-[10px] font-semibold uppercase tracking-widest text-need">Urgent</span>
-                      </div>
-                      {urgent.map(task => (
+                  <div className="px-4 py-1.5 flex items-center gap-2">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-need">Urgent</span>
+                  </div>
+                  {urgent.length > 0
+                    ? urgent.map(task => (
                         <TaskRow key={task.id} task={task} onComplete={completeTask} onUpdate={updateTask} onDelete={deleteTask} />
-                      ))}
-                    </>
-                  )}
-                  {standard.length > 0 && (
-                    <>
-                      <div className="px-4 py-1.5 flex items-center gap-2 mt-1">
-                        <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">Tasks</span>
-                      </div>
-                      {standard.map(task => (
+                      ))
+                    : <p className="px-4 py-2 text-sm text-[var(--text-muted)] italic">No urgent tasks</p>
+                  }
+
+                  <div className="px-4 py-1.5 flex items-center gap-2 mt-2">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">Tasks</span>
+                  </div>
+                  {standard.length > 0
+                    ? standard.map(task => (
                         <TaskRow key={task.id} task={task} onComplete={completeTask} onUpdate={updateTask} onDelete={deleteTask} />
-                      ))}
-                    </>
-                  )}
-                  {urgent.length === 0 && standard.length === 0 && (
-                    <p className="text-center text-[var(--text-muted)] text-sm pt-12">No active tasks. Add one below.</p>
-                  )}
+                      ))
+                    : <p className="px-4 py-2 text-sm text-[var(--text-muted)] italic">No tasks — add one below</p>
+                  }
                 </>
               )
             })()}

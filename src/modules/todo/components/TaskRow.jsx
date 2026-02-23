@@ -173,6 +173,18 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
 
   const formattedDue = formatDueDay(task.due_day)
 
+  // Warn if due date is today or already passed (starts highlighting the day before deadline)
+  const isDueSoon = (() => {
+    if (!task.due_day) return false
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const [y, m, d] = task.due_day.split('-').map(Number)
+    const due = new Date(y, m - 1, d)
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    return due <= tomorrow  // today or past → true; also catches "due tomorrow" (one day warning)
+  })()
+
   return (
     <div className="border-b border-[var(--border-subtle)] last:border-b-0">
       {/* Complete picker — shown inline above the row */}
@@ -285,7 +297,7 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
               <div className="flex-1 min-w-0 flex items-center gap-2">
                 <p className="text-sm font-medium text-[var(--text-primary)] truncate">{task.title}</p>
                 {formattedDue && (
-                  <span className="text-xs text-[var(--text-muted)] shrink-0">Due: {formattedDue}</span>
+                  <span className={`text-xs shrink-0 ${isDueSoon ? 'text-need font-medium' : 'text-[var(--text-muted)]'}`}>Due: {formattedDue}</span>
                 )}
               </div>
 
