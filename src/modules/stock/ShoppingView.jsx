@@ -63,14 +63,8 @@ export default function ShoppingView() {
   return (
     <div className="bg-[var(--surface-0)] min-h-screen pb-24 max-w-md mx-auto">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-4 bg-[var(--surface-0)] border-b border-[var(--border-subtle)]">
+      <header className="flex items-center px-4 py-4 bg-[var(--surface-0)] border-b border-[var(--border-subtle)]">
         <h1 className="text-lg font-bold text-[var(--text-primary)]">Shopping</h1>
-        <button
-          onClick={cancelShop}
-          className="h-9 px-3 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm active:scale-95 transition-transform"
-        >
-          Cancel
-        </button>
       </header>
 
       <main className="pt-2">
