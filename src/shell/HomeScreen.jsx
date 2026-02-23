@@ -113,30 +113,30 @@ export default function HomeScreen({ auth }) {
         {/* HomeTodo card — live task counts instead of icon */}
         <button
           onClick={() => navigate('/todo')}
-          className="flex flex-col items-start justify-between p-5 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
+          className="flex flex-col items-center justify-center gap-3 p-6 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
         >
           {/* Two count boxes */}
-          <div className="flex items-end gap-3 w-full">
+          <div className="flex items-center gap-3">
             {/* Total tasks */}
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold leading-none text-[var(--text-heading)]">
+              <span className="text-2xl font-bold leading-none text-[var(--text-heading)]">
                 {totalCount}
               </span>
               <span className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wide">tasks</span>
             </div>
 
-            <div className="w-px h-8 bg-[var(--border-subtle)] self-center" />
+            <div className="w-px h-6 bg-[var(--border-subtle)]" />
 
             {/* Priority tasks */}
             <div className="flex flex-col items-center">
-              <span className={`text-3xl font-bold leading-none ${priorityCount > 0 ? 'text-need' : 'text-[var(--text-muted)]'}`}>
+              <span className={`text-2xl font-bold leading-none ${priorityCount > 0 ? 'text-need' : 'text-[var(--text-muted)]'}`}>
                 {priorityCount}
               </span>
               <span className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wide">urgent</span>
             </div>
           </div>
 
-          <span className="text-sm font-semibold text-[var(--text-primary)] mt-4">HomeTodo</span>
+          <span className="text-sm font-semibold text-[var(--text-primary)]">HomeTodo</span>
         </button>
       </div>
     </div>

@@ -24,7 +24,7 @@ function formatDueDay(due_day) {
 
 export default function ArchiveView({ auth }) {
   const navigate = useNavigate()
-  const { archivedTasks, loading, uncompleteTask, deleteTask } = useTodoData()
+  const { archivedTasks, loading, deleteTask } = useTodoData()
 
   const rightSlot = (
     <button
@@ -79,15 +79,6 @@ export default function ArchiveView({ auth }) {
                     )}
                   </div>
                 </div>
-
-                {/* Undo button */}
-                <button
-                  onClick={() => uncompleteTask(task.id)}
-                  aria-label="Undo completion"
-                  className="shrink-0 h-8 px-2 rounded border border-[var(--border-subtle)] text-[var(--text-muted)] text-xs active:scale-95 transition-transform"
-                >
-                  Undo
-                </button>
 
                 {/* Delete button */}
                 <button

@@ -16,12 +16,24 @@ export default function TodoView({ auth }) {
   } = useTodoData()
 
   const rightSlot = (
-    <button
-      onClick={() => navigate('/todo/archive')}
-      className="h-9 px-3 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm active:scale-95 transition-transform"
-    >
-      Archive
-    </button>
+    <>
+      <button
+        disabled
+        aria-label="Notifications (coming soon)"
+        className="h-9 w-9 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] flex items-center justify-center opacity-50"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+      </button>
+      <button
+        onClick={() => navigate('/todo/archive')}
+        className="h-9 px-3 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm active:scale-95 transition-transform"
+      >
+        Archive
+      </button>
+    </>
   )
 
   return (

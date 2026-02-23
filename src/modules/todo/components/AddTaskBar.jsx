@@ -44,7 +44,8 @@ export default function AddTaskBar({ onAdd }) {
           }`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={isPriority ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+            <line x1="4" y1="22" x2="4" y2="15" />
           </svg>
         </button>
         <button
