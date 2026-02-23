@@ -266,11 +266,11 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
                 className="shrink-0 w-6 h-6 rounded-full border-2 border-[var(--border-subtle)] flex items-center justify-center active:scale-95 transition-transform"
               />
 
-              {/* Title + meta */}
-              <div className="flex-1 min-w-0">
+              {/* Title + due date inline */}
+              <div className="flex-1 min-w-0 flex items-center gap-2">
                 <p className="text-sm font-medium text-[var(--text-primary)] truncate">{task.title}</p>
                 {formattedDue && (
-                  <p className="text-xs text-[var(--text-muted)] mt-0.5">{formattedDue}</p>
+                  <span className="text-xs text-[var(--text-muted)] shrink-0">{formattedDue}</span>
                 )}
               </div>
 

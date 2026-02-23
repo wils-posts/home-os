@@ -5,10 +5,10 @@ function sortActiveTasks(tasks) {
   return [...tasks].sort((a, b) => {
     // 1) priority first
     if (a.is_priority !== b.is_priority) return a.is_priority ? -1 : 1
-    // 2) tasks with due_day before tasks without
+    // 2) within same priority group: tasks with due_day before tasks without
     if (a.due_day && !b.due_day) return -1
     if (!a.due_day && b.due_day) return 1
-    // 3) both have due_day: earliest first
+    // 3) both have due_day: earliest first (applies within both priority and non-priority groups)
     if (a.due_day && b.due_day) {
       if (a.due_day < b.due_day) return -1
       if (a.due_day > b.due_day) return 1
