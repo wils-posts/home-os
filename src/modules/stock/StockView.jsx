@@ -16,18 +16,8 @@ export default function StockView({ auth }) {
   const {
     localItems, loading, pendingIds,
     cycleState, togglePin, addItem, deleteItem,
-    updateItem, markAllOk, movePinUp, movePinDown,
+    updateItem, movePinUp, movePinDown,
   } = useStockData(showToast)
-
-  const [compact, setCompact] = useState(() => localStorage.getItem('compact') === 'true')
-
-  function toggleCompact() {
-    setCompact(c => {
-      const next = !c
-      localStorage.setItem('compact', String(next))
-      return next
-    })
-  }
 
   const sorted = sortItems(localItems)
   const groups = groupItems(sorted)
@@ -35,30 +25,12 @@ export default function StockView({ auth }) {
   const centreSlot = null
 
   const rightSlot = (
-    <>
-      <button
-        onClick={toggleCompact}
-        title={compact ? 'Comfortable view' : 'Compact view'}
-        className="h-9 w-9 flex items-center justify-center rounded-lg text-[var(--text-muted)] active:scale-95 transition-transform"
-      >
-        {compact ? (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-            <line x1="3" y1="5" x2="21" y2="5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="17" x2="21" y2="17"/><line x1="3" y1="21" x2="21" y2="21"/>
-          </svg>
-        )}
-      </button>
-
-      <button
-        onClick={() => navigate('/stock/shopping')}
-        className="h-9 px-3 bg-[var(--action-surface)] text-[var(--text-heading)] rounded-lg text-sm font-medium active:scale-95 transition-transform"
-      >
-        Shop
-      </button>
-    </>
+    <button
+      onClick={() => navigate('/stock/shopping')}
+      className="h-9 px-3 bg-[var(--action-surface)] text-[var(--text-heading)] rounded-lg text-sm font-medium active:scale-95 transition-transform"
+    >
+      Shop
+    </button>
   )
 
   return (
@@ -84,9 +56,6 @@ export default function StockView({ auth }) {
                   title={section.label}
                   items={sectionItems}
                   defaultOpen={section.defaultOpen}
-                  onMarkAllOk={['need', 'low'].includes(section.key)
-                    ? () => markAllOk(sectionItems.map(i => i.id))
-                    : undefined}
                 >
                   {sectionItems.map((item, idx) => (
                     <ItemRow
@@ -101,7 +70,7 @@ export default function StockView({ auth }) {
                       isFirst={isPinned && idx === 0}
                       isLast={isPinned && idx === sectionItems.length - 1}
                       pending={pendingIds.has(item.id)}
-                      compact={compact}
+                      compact={true}
                     />
                   ))}
                 </SectionAccordion>

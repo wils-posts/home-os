@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function SectionAccordion({ title, items, defaultOpen, onMarkAllOk, children }) {
+export default function SectionAccordion({ title, items, defaultOpen, children }) {
   const [open, setOpen] = useState(defaultOpen ?? false)
 
   if (items.length === 0) return null
@@ -32,16 +32,6 @@ export default function SectionAccordion({ title, items, defaultOpen, onMarkAllO
           </div>
         </button>
 
-        {/* Mark all OK button — only shown when onMarkAllOk is provided */}
-        {onMarkAllOk && (
-          <button
-            onClick={e => { e.stopPropagation(); onMarkAllOk() }}
-            className="px-3 py-3 text-xs text-[var(--text-muted)] hover:text-ok font-medium shrink-0 active:scale-95 transition-transform"
-            aria-label="Mark all as OK"
-          >
-            ✓ All
-          </button>
-        )}
       </div>
 
       <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-[3000px]' : 'max-h-0'}`}>
