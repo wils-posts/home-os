@@ -7,6 +7,7 @@ html.theme-dark {
   --surface-1:     #27272a;
   --surface-2:     #3f3f46;
   --border-subtle: #52525b;
+  --border-grid:   #2e2e32;
   --text-muted:    #a1a1aa;
   --text-primary:  #f4f4f5;
   --text-heading:  #ffffff;
@@ -22,6 +23,7 @@ html.theme-light {
   --surface-1:     #ffffff;
   --surface-2:     #f3f4f6;
   --border-subtle: #e5e7eb;
+  --border-grid:   #ececee;
   --text-muted:    #6b7280;
   --text-primary:  #111827;
   --text-heading:  #030712;
@@ -37,6 +39,7 @@ html.theme-sage {
   --surface-1:     #c2d9c2;
   --surface-2:     #adc9ad;
   --border-subtle: #8aae8a;
+  --border-grid:   #b8d0b8;
   --text-muted:    #4a6b4a;
   --text-primary:  #1a3320;
   --text-heading:  #0d2213;
@@ -53,6 +56,7 @@ html.theme-sage {
   --surface-1:     #27272a;
   --surface-2:     #3f3f46;
   --border-subtle: #52525b;
+  --border-grid:   #2e2e32;
   --text-muted:    #a1a1aa;
   --text-primary:  #f4f4f5;
   --text-heading:  #ffffff;
