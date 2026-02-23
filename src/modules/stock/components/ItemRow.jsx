@@ -145,7 +145,14 @@ export default function ItemRow({
 
   function handlePillTap(e) {
     e.preventDefault()
-    if (isOnCooldown() || swipeX !== 0) return
+    if (isOnCooldown() || swipeX !== 0 || isScrolling.current) return
+    // Suppress if finger moved significantly (i.e. was scrolling)
+    const touch = e.changedTouches?.[0]
+    if (touch && touchStartY.current !== null) {
+      const deltaY = Math.abs(touch.clientY - touchStartY.current)
+      const deltaX = Math.abs(touch.clientX - touchStartX.current)
+      if (deltaY > 8 || deltaX > 8) return
+    }
     markAction()
     setPickingState(p => !p)
   }
