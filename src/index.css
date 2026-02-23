@@ -2,10 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+html.theme-dark {
+  --surface-0:     #18181b;
+  --surface-1:     #27272a;
+  --surface-2:     #3f3f46;
+  --border-subtle: #52525b;
+  --text-muted:    #a1a1aa;
+  --text-primary:  #f4f4f5;
+  --text-heading:  #ffffff;
+  --surface-input: #27272a;
+  --ring-focus:    #71717a;
+  --spinner-track: #52525b;
+  --spinner-head:  #d4d4d8;
+  --action-surface:#52525b;
+}
+
+html.theme-light {
+  --surface-0:     #f9fafb;
+  --surface-1:     #ffffff;
+  --surface-2:     #f3f4f6;
+  --border-subtle: #e5e7eb;
+  --text-muted:    #6b7280;
+  --text-primary:  #111827;
+  --text-heading:  #030712;
+  --surface-input: #ffffff;
+  --ring-focus:    #9ca3af;
+  --spinner-track: #d1d5db;
+  --spinner-head:  #374151;
+  --action-surface:#6b7280;
+}
+
+html.theme-sage {
+  --surface-0:     #f0ede6;
+  --surface-1:     #e6e1d8;
+  --surface-2:     #d6d0c4;
+  --border-subtle: #b8b09c;
+  --text-muted:    #7a7060;
+  --text-primary:  #2c2416;
+  --text-heading:  #1a1208;
+  --surface-input: #e6e1d8;
+  --ring-focus:    #8a7d6a;
+  --spinner-track: #b8b09c;
+  --spinner-head:  #4a7c59;
+  --action-surface:#6b8f72;
+}
+
+/* Fallback = dark values for any unstyled flash */
+:root {
+  --surface-0:     #18181b;
+  --surface-1:     #27272a;
+  --surface-2:     #3f3f46;
+  --border-subtle: #52525b;
+  --text-muted:    #a1a1aa;
+  --text-primary:  #f4f4f5;
+  --text-heading:  #ffffff;
+  --surface-input: #27272a;
+  --ring-focus:    #71717a;
+  --spinner-track: #52525b;
+  --spinner-head:  #d4d4d8;
+  --action-surface:#52525b;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #18181b;
-  color: #f4f4f5;
+  background-color: var(--surface-0);
+  color: var(--text-primary);
 }

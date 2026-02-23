@@ -14,7 +14,7 @@ export default function ColorPicker({ activeColor, onChange }) {
           onClick={() => onChange(id)}
           className={`w-9 h-9 rounded-full ${bg} text-white text-sm font-bold flex items-center justify-center transition-all ${
             activeColor === id
-              ? `ring-2 ring-offset-2 ring-offset-zinc-900 ${ring} scale-110`
+              ? `ring-2 ring-offset-2 ring-offset-[var(--surface-0)] ${ring} scale-110`
               : 'opacity-40'
           }`}
         >

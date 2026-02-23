@@ -60,9 +60,9 @@ export default function LoginView({ auth }) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-6 bg-zinc-900">
-      <h1 className="text-2xl font-bold text-white mb-1">HomeOS</h1>
-      <p className="text-zinc-400 text-sm mb-8">Sign in to your household</p>
+    <div className="flex flex-col items-center justify-center min-h-screen px-6 bg-[var(--surface-0)]">
+      <h1 className="text-2xl font-bold text-[var(--text-heading)] mb-1">HomeOS</h1>
+      <p className="text-[var(--text-muted)] text-sm mb-8">Sign in to your household</p>
 
       {step === 'email' ? (
         <form onSubmit={handleSendOtp} className="w-full max-w-sm flex flex-col gap-3">
@@ -75,22 +75,22 @@ export default function LoginView({ auth }) {
             autoFocus
             inputMode="email"
             autoComplete="email"
-            className="h-12 px-4 rounded-xl border border-zinc-600 bg-zinc-800 text-white placeholder:text-zinc-500 text-base focus:outline-none focus:ring-1 focus:ring-zinc-500"
+            className="h-12 px-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-input)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] text-base focus:outline-none focus:ring-1 focus:ring-[var(--ring-focus)]"
           />
           {error && <p className="text-need text-sm">{error}</p>}
           <button
             type="submit"
             disabled={loading || !email.trim()}
-            className="h-12 bg-white text-zinc-900 rounded-xl font-semibold text-base disabled:opacity-50 active:scale-95 transition-transform"
+            className="h-12 bg-[var(--text-primary)] text-[var(--surface-0)] rounded-xl font-semibold text-base disabled:opacity-50 active:scale-95 transition-transform"
           >
             {loading ? 'Sending…' : 'Send code'}
           </button>
         </form>
       ) : (
         <form onSubmit={handleVerifyOtp} className="w-full max-w-sm flex flex-col gap-3">
-          <p className="text-zinc-400 text-sm text-center">
+          <p className="text-[var(--text-muted)] text-sm text-center">
             Enter the 6-digit code sent to{' '}
-            <strong className="text-white">{email}</strong>
+            <strong className="text-[var(--text-heading)]">{email}</strong>
           </p>
           <input
             type="text"
@@ -102,13 +102,13 @@ export default function LoginView({ auth }) {
             inputMode="numeric"
             autoComplete="one-time-code"
             maxLength={6}
-            className="h-12 px-4 rounded-xl border border-zinc-600 bg-zinc-800 text-white text-xl text-center tracking-widest font-mono focus:outline-none focus:ring-1 focus:ring-zinc-500"
+            className="h-12 px-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-input)] text-[var(--text-primary)] text-xl text-center tracking-widest font-mono focus:outline-none focus:ring-1 focus:ring-[var(--ring-focus)]"
           />
           {error && <p className="text-need text-sm text-center">{error}</p>}
           <button
             type="submit"
             disabled={loading || otp.trim().length < 6}
-            className="h-12 bg-white text-zinc-900 rounded-xl font-semibold text-base disabled:opacity-50 active:scale-95 transition-transform"
+            className="h-12 bg-[var(--text-primary)] text-[var(--surface-0)] rounded-xl font-semibold text-base disabled:opacity-50 active:scale-95 transition-transform"
           >
             {loading ? 'Verifying…' : 'Verify'}
           </button>
@@ -116,7 +116,7 @@ export default function LoginView({ auth }) {
             <button
               type="button"
               onClick={() => { setStep('email'); setOtp(''); setError('') }}
-              className="text-zinc-400 text-sm underline"
+              className="text-[var(--text-muted)] text-sm underline"
             >
               Use a different email
             </button>
@@ -124,7 +124,7 @@ export default function LoginView({ auth }) {
               type="button"
               onClick={handleResend}
               disabled={countdown > 0 || loading}
-              className="text-zinc-400 text-sm disabled:opacity-50"
+              className="text-[var(--text-muted)] text-sm disabled:opacity-50"
             >
               {countdown > 0 ? `Resend in ${countdown}s` : 'Resend code'}
             </button>

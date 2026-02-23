@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useTheme } from '../shared/useTheme'
 
 const TOOLS = [
   {
@@ -50,23 +51,48 @@ const TOOLS = [
 
 export default function HomeScreen({ auth }) {
   const navigate = useNavigate()
+  const { cycleTheme } = useTheme()
 
   return (
     <div
-      className="bg-zinc-900 text-zinc-100 max-w-md mx-auto flex flex-col"
+      className="bg-[var(--surface-0)] text-[var(--text-primary)] max-w-md mx-auto flex flex-col"
       style={{ height: '100dvh' }}
     >
       <div className="px-6 pt-8 pb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">HomeOS</h1>
-          <p className="text-zinc-400 text-sm mt-1">Version 1.2</p>
+          <h1 className="text-2xl font-bold text-[var(--text-heading)]">HomeOS</h1>
+          <p className="text-[var(--text-muted)] text-sm mt-1">Version 1.2</p>
         </div>
-        <button
-          onClick={auth.signOut}
-          className="mt-1 h-9 px-3 rounded-lg border border-zinc-600 text-zinc-400 text-sm active:scale-95 transition-transform"
-        >
-          Sign Out
-        </button>
+        <div className="flex items-center gap-2 mt-1">
+          <button
+            onClick={cycleTheme}
+            aria-label="Cycle theme"
+            className="h-9 w-9 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] flex items-center justify-center active:scale-95 transition-transform"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10 1.1 0 2-.9 2-2v-.5c0-.55.45-1 1-1h1c2.76 0 5-2.24 5-5C21 7.03 16.97 2 12 2z" />
+              <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none" />
+              <circle cx="14.5" cy="7.5" r="1.5" fill="currentColor" stroke="none" />
+              <circle cx="7.5" cy="13.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+          </button>
+          <button
+            onClick={auth.signOut}
+            className="h-9 px-3 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm active:scale-95 transition-transform"
+          >
+            Sign Out
+          </button>
+        </div>
       </div>
 
       <div className="px-4 grid grid-cols-2 gap-3">
@@ -74,10 +100,10 @@ export default function HomeScreen({ auth }) {
           <button
             key={tool.id}
             onClick={() => navigate(tool.route)}
-            className="flex flex-col items-center justify-center gap-3 p-6 bg-zinc-800 rounded-2xl border border-zinc-700 active:scale-95 transition-transform"
+            className="flex flex-col items-center justify-center gap-3 p-6 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
           >
-            <span className="text-zinc-300">{tool.icon}</span>
-            <span className="text-sm font-semibold text-zinc-100">{tool.label}</span>
+            <span className="text-[var(--text-muted)]">{tool.icon}</span>
+            <span className="text-sm font-semibold text-[var(--text-primary)]">{tool.label}</span>
           </button>
         ))}
       </div>

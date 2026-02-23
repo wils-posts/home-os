@@ -12,12 +12,12 @@ export default function CalendarCell({ dayStr, dayNum, isCurrentMonth, isToday, 
   return (
     <button
       onClick={() => onSelect(dayStr)}
-      className={`relative flex flex-col justify-between p-0.5 w-full h-full border-r border-b border-zinc-600/50
-        ${isSelected ? 'bg-zinc-600' : isToday ? 'bg-zinc-700/50' : ''}
+      className={`relative flex flex-col justify-between p-0.5 w-full h-full border-r border-b border-[var(--border-subtle)]/50
+        ${isSelected ? 'bg-[var(--border-subtle)]' : isToday ? 'bg-[var(--surface-2)]/50' : ''}
       `}
     >
       <div className="flex justify-center w-full">
-        <span className={`text-xs leading-none font-semibold ${!isCurrentMonth ? 'text-zinc-600' : isSelected ? 'text-white' : 'text-zinc-100'}`}>
+        <span className={`text-xs leading-none font-semibold ${!isCurrentMonth ? 'text-[var(--border-subtle)]' : isSelected ? 'text-[var(--text-heading)]' : 'text-[var(--text-primary)]'}`}>
           {dayNum}
         </span>
         {hasNotes && (

@@ -10,12 +10,12 @@ export default function CalendarGrid({ viewYear, viewMonth, selectedDay, todaySt
     <div className="flex flex-col h-full">
       <div className="grid grid-cols-7 mb-0.5">
         {DAY_HEADERS.map((d, i) => (
-          <div key={i} className="text-center text-xs text-zinc-400 py-0.5 font-medium">
+          <div key={i} className="text-center text-xs text-[var(--text-muted)] py-0.5 font-medium">
             {d}
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 grid-rows-6 flex-1 border-l border-t border-zinc-600/50">
+      <div className="grid grid-cols-7 grid-rows-6 flex-1 border-l border-t border-[var(--border-subtle)]/50">
         {cells.map(({ dayStr, dayNum, isCurrentMonth }) => {
           const data = monthData[dayStr] || {}
           return (

@@ -63,19 +63,19 @@ export default function AddEntryForm({ activeColor, selectedDay, calendarId, use
           onKeyDown={e => { if (e.key === 'Enter') submit() }}
           placeholder="Add entry…"
           disabled={saving}
-          className="flex-1 bg-zinc-800 text-white placeholder-zinc-500 rounded-lg px-3 py-2.5 text-base outline-none focus:ring-1 focus:ring-zinc-500 min-w-0"
+          className="flex-1 bg-[var(--surface-input)] text-[var(--text-primary)] placeholder-[var(--text-muted)] rounded-lg px-3 py-2.5 text-base outline-none focus:ring-1 focus:ring-[var(--ring-focus)] min-w-0"
         />
         <button
           onClick={submit}
           disabled={saving || !text.trim()}
-          className="bg-zinc-700 text-white rounded-lg px-4 py-2.5 text-base font-medium active:bg-zinc-600 disabled:opacity-40 shrink-0"
+          className="bg-[var(--surface-2)] text-[var(--text-primary)] rounded-lg px-4 py-2.5 text-base font-medium active:bg-[var(--border-subtle)] disabled:opacity-40 shrink-0"
         >
           Add
         </button>
       </div>
 
       <div className="flex items-center gap-2 text-sm flex-wrap">
-        <label className="flex items-center gap-2 text-zinc-400 cursor-pointer shrink-0">
+        <label className="flex items-center gap-2 text-[var(--text-muted)] cursor-pointer shrink-0">
           <input
             type="checkbox"
             checked={repeat}
@@ -90,12 +90,12 @@ export default function AddEntryForm({ activeColor, selectedDay, calendarId, use
             value={untilDate}
             min={selectedDay}
             onChange={e => setUntilDate(e.target.value)}
-            className="bg-zinc-800 text-white rounded px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-zinc-500"
+            className="bg-[var(--surface-input)] text-[var(--text-primary)] rounded px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-[var(--ring-focus)]"
           />
         )}
       </div>
 
-      {batchMsg && <p className="text-xs text-zinc-400">{batchMsg}</p>}
+      {batchMsg && <p className="text-xs text-[var(--text-muted)]">{batchMsg}</p>}
     </div>
   )
 }

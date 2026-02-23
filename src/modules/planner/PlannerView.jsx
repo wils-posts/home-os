@@ -45,7 +45,7 @@ export default function PlannerView({ auth }) {
       <NavBtn onClick={prevMonth}>‹</NavBtn>
       <button
         onClick={goToToday}
-        className="text-sm font-semibold text-white px-2 text-center whitespace-nowrap"
+        className="text-sm font-semibold text-[var(--text-heading)] px-2 text-center whitespace-nowrap"
       >
         {getMonthLabel(viewYear, viewMonth)}
       </button>
@@ -57,7 +57,7 @@ export default function PlannerView({ auth }) {
     <button
       disabled
       aria-label="Notifications (coming soon)"
-      className="h-9 w-9 rounded-lg border border-zinc-600 text-zinc-400 flex items-center justify-center opacity-50"
+      className="h-9 w-9 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] flex items-center justify-center opacity-50"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -78,13 +78,13 @@ export default function PlannerView({ auth }) {
 
   return (
     <div
-      className="overflow-hidden flex flex-col bg-zinc-900 text-zinc-100 max-w-md mx-auto"
+      className="overflow-hidden flex flex-col bg-[var(--surface-0)] text-[var(--text-primary)] max-w-md mx-auto"
       style={{ height: '100dvh' }}
     >
       <TopBar centre={centreSlot} right={rightSlot} />
 
       {/* Calendar — fixed 340px height */}
-      <div className="shrink-0 overflow-hidden px-2 pb-2 pt-1 bg-zinc-800" style={{ height: '340px' }}>
+      <div className="shrink-0 overflow-hidden px-2 pb-2 pt-1 bg-[var(--surface-1)]" style={{ height: '340px' }}>
         <CalendarGrid
           viewYear={viewYear}
           viewMonth={viewMonth}
@@ -123,7 +123,7 @@ function NavBtn({ children, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="text-zinc-400 active:text-white text-xl leading-none w-9 h-9 flex items-center justify-center"
+      className="text-[var(--text-muted)] active:text-[var(--text-heading)] text-xl leading-none w-9 h-9 flex items-center justify-center"
     >
       {children}
     </button>
@@ -139,7 +139,7 @@ function PlannerToast({ message, type = 'error', onDismiss }) {
   const colors = {
     error: 'bg-red-600 text-white',
     success: 'bg-green-600 text-white',
-    info: 'bg-zinc-700 text-white',
+    info: 'bg-[var(--surface-2)] text-[var(--text-heading)]',
   }
 
   return (

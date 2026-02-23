@@ -37,7 +37,7 @@ export default function StatePickerPopover({ current, onSelect, onClose }) {
                 min-w-[48px] min-h-[40px] px-3 rounded-full text-sm font-semibold
                 flex items-center justify-center shrink-0 transition-all duration-100
                 ${isCurrent
-                  ? `${STATE_COLORS[state]} ring-2 ring-offset-2 ring-zinc-400 ring-offset-zinc-800`
+                  ? `${STATE_COLORS[state]} ring-2 ring-offset-2 ring-[var(--ring-focus)] ring-offset-[var(--surface-1)]`
                   : `${STATE_COLORS[state]} opacity-40 active:opacity-100`
                 }
               `}
