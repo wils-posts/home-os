@@ -23,6 +23,7 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
   const touchStartX = useRef(null)
   const touchStartY = useRef(null)
   const longPressTimer = useRef(null)
+  const pressingTimer = useRef(null)
   const isScrolling = useRef(false)
   const lastActionAt = useRef(0)
   const titleInputRef = useRef(null)
@@ -55,6 +56,10 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
       clearTimeout(longPressTimer.current)
       longPressTimer.current = null
     }
+    if (pressingTimer.current) {
+      clearTimeout(pressingTimer.current)
+      pressingTimer.current = null
+    }
     setPressing(false)
   }
 
@@ -64,7 +69,12 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
     touchStartY.current = e.touches[0].clientY
     isScrolling.current = false
     setSwiping(true)
-    setPressing(true)
+
+    // Delay the press highlight — if user is scrolling it will be cancelled before showing
+    pressingTimer.current = setTimeout(() => {
+      pressingTimer.current = null
+      setPressing(true)
+    }, 80)
 
     longPressTimer.current = setTimeout(() => {
       longPressTimer.current = null
