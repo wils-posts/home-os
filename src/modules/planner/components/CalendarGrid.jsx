@@ -15,7 +15,7 @@ export default function CalendarGrid({ viewYear, viewMonth, selectedDay, todaySt
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 grid-rows-6 flex-1 border-l border-t border-[var(--border-subtle)]/50">
+      <div className="grid grid-cols-7 grid-rows-6 flex-1 border-l border-t border-[var(--border-subtle)]/20">
         {cells.map(({ dayStr, dayNum, isCurrentMonth }) => {
           const data = monthData[dayStr] || {}
           return (
