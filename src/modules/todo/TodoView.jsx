@@ -54,15 +54,37 @@ export default function TodoView({ auth }) {
           </p>
         ) : (
           <div className="mt-2">
-            {activeTasks.map(task => (
-              <TaskRow
-                key={task.id}
-                task={task}
-                onComplete={completeTask}
-                onUpdate={updateTask}
-                onDelete={deleteTask}
-              />
-            ))}
+            {(() => {
+              const urgent = activeTasks.filter(t => t.is_priority)
+              const standard = activeTasks.filter(t => !t.is_priority)
+              return (
+                <>
+                  {urgent.length > 0 && (
+                    <>
+                      <div className="px-4 py-1.5 flex items-center gap-2">
+                        <span className="text-[10px] font-semibold uppercase tracking-widest text-need">Urgent</span>
+                      </div>
+                      {urgent.map(task => (
+                        <TaskRow key={task.id} task={task} onComplete={completeTask} onUpdate={updateTask} onDelete={deleteTask} />
+                      ))}
+                    </>
+                  )}
+                  {standard.length > 0 && (
+                    <>
+                      <div className="px-4 py-1.5 flex items-center gap-2 mt-1">
+                        <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">Tasks</span>
+                      </div>
+                      {standard.map(task => (
+                        <TaskRow key={task.id} task={task} onComplete={completeTask} onUpdate={updateTask} onDelete={deleteTask} />
+                      ))}
+                    </>
+                  )}
+                  {urgent.length === 0 && standard.length === 0 && (
+                    <p className="text-center text-[var(--text-muted)] text-sm pt-12">No active tasks. Add one below.</p>
+                  )}
+                </>
+              )
+            })()}
           </div>
         )}
       </main>
