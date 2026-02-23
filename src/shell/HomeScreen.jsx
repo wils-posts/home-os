@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '../shared/useTheme'
+import { useTodoData } from '../modules/todo/hooks/useTodoData'
 
 const TOOLS = [
   {
@@ -52,6 +53,7 @@ const TOOLS = [
 export default function HomeScreen({ auth }) {
   const navigate = useNavigate()
   const { cycleTheme } = useTheme()
+  const { totalCount, priorityCount } = useTodoData()
 
   return (
     <div
@@ -96,6 +98,7 @@ export default function HomeScreen({ auth }) {
       </div>
 
       <div className="px-4 grid grid-cols-2 gap-3">
+        {/* Standard tool cards */}
         {TOOLS.map(tool => (
           <button
             key={tool.id}
@@ -106,6 +109,35 @@ export default function HomeScreen({ auth }) {
             <span className="text-sm font-semibold text-[var(--text-primary)]">{tool.label}</span>
           </button>
         ))}
+
+        {/* HomeTodo card — live task counts instead of icon */}
+        <button
+          onClick={() => navigate('/todo')}
+          className="flex flex-col items-start justify-between p-5 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
+        >
+          {/* Two count boxes */}
+          <div className="flex items-end gap-3 w-full">
+            {/* Total tasks */}
+            <div className="flex flex-col items-center">
+              <span className="text-3xl font-bold leading-none text-[var(--text-heading)]">
+                {totalCount}
+              </span>
+              <span className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wide">tasks</span>
+            </div>
+
+            <div className="w-px h-8 bg-[var(--border-subtle)] self-center" />
+
+            {/* Priority tasks */}
+            <div className="flex flex-col items-center">
+              <span className={`text-3xl font-bold leading-none ${priorityCount > 0 ? 'text-need' : 'text-[var(--text-muted)]'}`}>
+                {priorityCount}
+              </span>
+              <span className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wide">urgent</span>
+            </div>
+          </div>
+
+          <span className="text-sm font-semibold text-[var(--text-primary)] mt-4">HomeTodo</span>
+        </button>
       </div>
     </div>
   )

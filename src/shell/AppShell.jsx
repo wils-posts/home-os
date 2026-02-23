@@ -5,6 +5,8 @@ import HomeScreen from './HomeScreen'
 import PlannerView from '../modules/planner/PlannerView'
 import StockView from '../modules/stock/StockView'
 import ShoppingView from '../modules/stock/ShoppingView'
+import TodoView from '../modules/todo/TodoView'
+import ArchiveView from '../modules/todo/ArchiveView'
 
 export default function AppShell() {
   const auth = useAuth()
@@ -44,6 +46,8 @@ export default function AppShell() {
       <Route path="/planner" element={<PlannerView auth={auth} />} />
       <Route path="/stock" element={<StockView auth={auth} />} />
       <Route path="/stock/shopping" element={<ShoppingView auth={auth} />} />
+      <Route path="/todo" element={<TodoView auth={auth} />} />
+      <Route path="/todo/archive" element={<ArchiveView auth={auth} />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
