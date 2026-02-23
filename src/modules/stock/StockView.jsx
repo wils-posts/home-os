@@ -32,16 +32,14 @@ export default function StockView({ auth }) {
   const sorted = sortItems(localItems)
   const groups = groupItems(sorted)
 
-  const centreSlot = (
-    <span className="text-base font-bold text-white">HomeStock</span>
-  )
+  const centreSlot = null
 
   const rightSlot = (
     <>
       <button
         onClick={toggleCompact}
         title={compact ? 'Comfortable view' : 'Compact view'}
-        className="h-9 w-9 flex items-center justify-center rounded-lg text-slate-400 active:scale-95 transition-transform"
+        className="h-9 w-9 flex items-center justify-center rounded-lg text-zinc-400 active:scale-95 transition-transform"
       >
         {compact ? (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
@@ -56,23 +54,16 @@ export default function StockView({ auth }) {
 
       <button
         onClick={() => navigate('/stock/shopping')}
-        className="h-9 px-3 bg-slate-600 text-white rounded-lg text-sm font-medium active:scale-95 transition-transform"
+        className="h-9 px-3 bg-zinc-600 text-white rounded-lg text-sm font-medium active:scale-95 transition-transform"
       >
         Shop
-      </button>
-
-      <button
-        onClick={auth.signOut}
-        className="h-9 px-3 rounded-lg border border-slate-600 text-slate-400 text-sm active:scale-95 transition-transform"
-      >
-        Out
       </button>
     </>
   )
 
   return (
     <div
-      className="bg-slate-900 text-slate-100 max-w-md mx-auto flex flex-col"
+      className="bg-zinc-900 text-zinc-100 max-w-md mx-auto flex flex-col"
       style={{ height: '100dvh' }}
     >
       <TopBar centre={centreSlot} right={rightSlot} />
@@ -80,7 +71,7 @@ export default function StockView({ auth }) {
       <main className="flex-1 overflow-y-auto pb-20">
         {loading ? (
           <div className="flex justify-center pt-16">
-            <div className="w-8 h-8 border-4 border-slate-600 border-t-slate-300 rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-zinc-600 border-t-zinc-300 rounded-full animate-spin" />
           </div>
         ) : (
           <>
@@ -117,7 +108,7 @@ export default function StockView({ auth }) {
               )
             })}
             {localItems.length === 0 && (
-              <p className="text-center text-slate-400 text-sm pt-12">
+              <p className="text-center text-zinc-400 text-sm pt-12">
                 No items yet. Add one below.
               </p>
             )}

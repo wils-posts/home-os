@@ -61,13 +61,13 @@ export default function ShoppingView() {
   }
 
   return (
-    <div className="bg-slate-900 min-h-screen pb-24 max-w-md mx-auto">
+    <div className="bg-zinc-900 min-h-screen pb-24 max-w-md mx-auto">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-4 bg-slate-900 border-b border-slate-700">
-        <h1 className="text-lg font-bold text-slate-100">Shopping</h1>
+      <header className="flex items-center justify-between px-4 py-4 bg-zinc-900 border-b border-zinc-700">
+        <h1 className="text-lg font-bold text-zinc-100">Shopping</h1>
         <button
           onClick={cancelShop}
-          className="h-9 px-3 rounded-lg border border-slate-600 text-slate-400 text-sm active:scale-95 transition-transform"
+          className="h-9 px-3 rounded-lg border border-zinc-600 text-zinc-400 text-sm active:scale-95 transition-transform"
         >
           Cancel
         </button>
@@ -76,12 +76,12 @@ export default function ShoppingView() {
       <main className="pt-2">
         {loading ? (
           <div className="flex justify-center pt-16">
-            <div className="w-8 h-8 border-4 border-slate-600 border-t-slate-300 rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-zinc-600 border-t-zinc-300 rounded-full animate-spin" />
           </div>
         ) : (
           <>
             {activeItems.length > 0 && (
-              <div className="bg-slate-800 mb-2">
+              <div className="bg-zinc-800 mb-2">
                 {activeItems.map(item => (
                   <ShoppingRow
                     key={item.id}
@@ -95,12 +95,12 @@ export default function ShoppingView() {
 
             {boughtItems.length > 0 && (
               <div className="mb-2">
-                <div className="px-4 py-2 bg-slate-800">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                <div className="px-4 py-2 bg-zinc-800">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-zinc-400">
                     Bought this trip
                   </span>
                 </div>
-                <div className="bg-slate-800">
+                <div className="bg-zinc-800">
                   {boughtItems.map(item => (
                     <ShoppingRow
                       key={item.id}
@@ -114,7 +114,7 @@ export default function ShoppingView() {
             )}
 
             {shoppingItems.length === 0 && (
-              <p className="text-center text-slate-400 text-sm pt-12">
+              <p className="text-center text-zinc-400 text-sm pt-12">
                 Nothing to shop for right now.
               </p>
             )}
@@ -123,10 +123,10 @@ export default function ShoppingView() {
       </main>
 
       {/* Bottom actions */}
-      <div className="fixed bottom-0 left-0 right-0 flex gap-3 px-4 py-3 bg-slate-900 border-t border-slate-700">
+      <div className="fixed bottom-0 left-0 right-0 flex gap-3 px-4 py-3 bg-zinc-900 border-t border-zinc-700">
         <button
           onClick={cancelShop}
-          className="flex-1 h-12 rounded-xl border border-slate-600 text-slate-300 font-semibold text-sm active:scale-95 transition-transform"
+          className="flex-1 h-12 rounded-xl border border-zinc-600 text-zinc-300 font-semibold text-sm active:scale-95 transition-transform"
         >
           Cancel
         </button>
@@ -148,10 +148,10 @@ function ShoppingRow({ item, bought, onToggle }) {
   return (
     <button
       onClick={onToggle}
-      className="w-full flex items-center gap-3 px-4 py-3 border-b border-slate-700 last:border-b-0 text-left active:bg-slate-700 transition-colors"
+      className="w-full flex items-center gap-3 px-4 py-3 border-b border-zinc-700 last:border-b-0 text-left active:bg-zinc-700 transition-colors"
     >
       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors
-        ${bought ? 'border-ok bg-ok' : 'border-slate-500'}`}
+        ${bought ? 'border-ok bg-ok' : 'border-zinc-500'}`}
       >
         {bought && (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" className="w-3.5 h-3.5">
@@ -161,11 +161,11 @@ function ShoppingRow({ item, bought, onToggle }) {
       </div>
 
       <div className="flex-1 min-w-0">
-        <p className={`font-medium truncate ${bought ? 'line-through text-slate-500' : 'text-slate-100'}`}>
+        <p className={`font-medium truncate ${bought ? 'line-through text-zinc-500' : 'text-zinc-100'}`}>
           {item.name}
         </p>
         {item.note && (
-          <p className="text-sm text-slate-400 truncate">{item.note}</p>
+          <p className="text-sm text-zinc-400 truncate">{item.note}</p>
         )}
       </div>
 

@@ -4,12 +4,12 @@ export default function TopBar({ centre, right }) {
   const navigate = useNavigate()
 
   return (
-    <div className="shrink-0 px-4 pt-3 pb-2 grid grid-cols-3 items-center bg-slate-900">
+    <div className="shrink-0 px-4 pt-3 pb-2 grid grid-cols-3 items-center bg-zinc-900">
       {/* Left: home button */}
       <button
         onClick={() => navigate('/')}
         aria-label="Home"
-        className="h-9 w-9 flex items-center justify-center text-slate-400 active:text-white transition-colors"
+        className="h-9 w-9 flex items-center justify-center text-zinc-400 active:text-white transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

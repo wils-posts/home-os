@@ -48,17 +48,25 @@ const TOOLS = [
   },
 ]
 
-export default function HomeScreen() {
+export default function HomeScreen({ auth }) {
   const navigate = useNavigate()
 
   return (
     <div
-      className="bg-slate-900 text-slate-100 max-w-md mx-auto flex flex-col"
+      className="bg-zinc-900 text-zinc-100 max-w-md mx-auto flex flex-col"
       style={{ height: '100dvh' }}
     >
-      <div className="px-6 pt-8 pb-6">
-        <h1 className="text-2xl font-bold text-white">HomeOS</h1>
-        <p className="text-slate-400 text-sm mt-1">Your household, all in one place</p>
+      <div className="px-6 pt-8 pb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-white">HomeOS</h1>
+          <p className="text-zinc-400 text-sm mt-1">Your household, all in one place</p>
+        </div>
+        <button
+          onClick={auth.signOut}
+          className="mt-1 h-9 px-3 rounded-lg border border-zinc-600 text-zinc-400 text-sm active:scale-95 transition-transform"
+        >
+          Sign Out
+        </button>
       </div>
 
       <div className="px-4 grid grid-cols-2 gap-3">
@@ -66,10 +74,10 @@ export default function HomeScreen() {
           <button
             key={tool.id}
             onClick={() => navigate(tool.route)}
-            className="flex flex-col items-center justify-center gap-3 p-6 bg-slate-800 rounded-2xl border border-slate-700 active:scale-95 transition-transform"
+            className="flex flex-col items-center justify-center gap-3 p-6 bg-zinc-800 rounded-2xl border border-zinc-700 active:scale-95 transition-transform"
           >
-            <span className="text-slate-300">{tool.icon}</span>
-            <span className="text-sm font-semibold text-slate-100">{tool.label}</span>
+            <span className="text-zinc-300">{tool.icon}</span>
+            <span className="text-sm font-semibold text-zinc-100">{tool.label}</span>
           </button>
         ))}
       </div>

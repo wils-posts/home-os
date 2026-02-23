@@ -181,7 +181,7 @@ export default function ItemRow({
   const showReorder = onMoveUp !== undefined || onMoveDown !== undefined
 
   return (
-    <div className="relative overflow-hidden border-b border-slate-700 last:border-b-0">
+    <div className="relative overflow-hidden border-b border-zinc-700 last:border-b-0">
       {/* Delete button revealed on swipe */}
       {!editing && (
         <div className="absolute right-0 top-0 bottom-0 w-[72px] flex items-center justify-center bg-need">
@@ -203,7 +203,7 @@ export default function ItemRow({
 
       {/* Row content */}
       <div
-        className={`relative flex items-center ${gap} px-4 ${py} transition-colors duration-75 ${pressing ? 'bg-slate-700' : 'bg-slate-800'}`}
+        className={`relative flex items-center ${gap} px-4 ${py} transition-colors duration-75 ${pressing ? 'bg-zinc-700' : 'bg-zinc-800'}`}
         style={{
           transform: editing ? 'none' : `translateX(${swipeX}px) scale(${pressing ? 0.985 : 1})`,
           transition: swiping ? 'none' : pressing ? `transform ${LONGPRESS_MS}ms ease-out` : 'transform 0.2s ease',
@@ -223,7 +223,7 @@ export default function ItemRow({
                 value={editName}
                 onChange={e => setEditName(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter') handleConfirmEdit(e); if (e.key === 'Escape') handleCancelEdit(e) }}
-                className={`w-full px-2 py-1 rounded border border-slate-600 bg-slate-700 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 ${nameSize}`}
+                className={`w-full px-2 py-1 rounded border border-zinc-600 bg-zinc-700 text-zinc-100 font-medium focus:outline-none focus:ring-2 focus:ring-zinc-400 ${nameSize}`}
                 placeholder="Item name"
               />
               <input
@@ -231,7 +231,7 @@ export default function ItemRow({
                 value={editNote}
                 onChange={e => setEditNote(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter') handleConfirmEdit(e); if (e.key === 'Escape') handleCancelEdit(e) }}
-                className={`w-full px-2 py-1 rounded border border-slate-600 bg-slate-700 text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 ${noteSize}`}
+                className={`w-full px-2 py-1 rounded border border-zinc-600 bg-zinc-700 text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-300 ${noteSize}`}
                 placeholder="Add a note…"
               />
             </div>
@@ -249,7 +249,7 @@ export default function ItemRow({
               <button
                 onTouchEnd={handleCancelEdit}
                 onClick={handleCancelEdit}
-                className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg border border-slate-600 text-slate-400 active:scale-95 transition-transform"
+                className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg border border-zinc-600 text-zinc-400 active:scale-95 transition-transform"
                 aria-label="Cancel edit"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
@@ -278,9 +278,9 @@ export default function ItemRow({
               )}
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-medium text-slate-100 truncate ${nameSize}`}>{item.name}</p>
+              <p className={`font-medium text-zinc-100 truncate ${nameSize}`}>{item.name}</p>
               {item.note && (
-                <p className={`text-slate-400 truncate ${noteSize}`}>{item.note}</p>
+                <p className={`text-zinc-400 truncate ${noteSize}`}>{item.note}</p>
               )}
             </div>
 
@@ -291,7 +291,7 @@ export default function ItemRow({
                   onTouchEnd={onMoveUp ? handleMoveUp : undefined}
                   onClick={onMoveUp ? handleMoveUp : undefined}
                   disabled={isFirst}
-                  className="min-w-[28px] min-h-[22px] flex items-center justify-center text-slate-500 disabled:opacity-25 active:scale-95 transition-transform"
+                  className="min-w-[28px] min-h-[22px] flex items-center justify-center text-zinc-500 disabled:opacity-25 active:scale-95 transition-transform"
                   aria-label="Move up"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5">
@@ -302,7 +302,7 @@ export default function ItemRow({
                   onTouchEnd={onMoveDown ? handleMoveDown : undefined}
                   onClick={onMoveDown ? handleMoveDown : undefined}
                   disabled={isLast}
-                  className="min-w-[28px] min-h-[22px] flex items-center justify-center text-slate-500 disabled:opacity-25 active:scale-95 transition-transform"
+                  className="min-w-[28px] min-h-[22px] flex items-center justify-center text-zinc-500 disabled:opacity-25 active:scale-95 transition-transform"
                   aria-label="Move down"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5">

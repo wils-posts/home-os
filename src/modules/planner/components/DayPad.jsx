@@ -21,7 +21,7 @@ export default function DayPad({ calendarId, selectedDay, session, entries, note
   }
 
   return (
-    <div className="flex flex-col h-full overflow-hidden bg-slate-900">
+    <div className="flex flex-col h-full overflow-hidden bg-zinc-900">
 
       {/* Fixed top: date + colour picker + add form */}
       <div className="shrink-0 px-4 pt-3 pb-2 flex flex-col gap-3">
@@ -42,7 +42,7 @@ export default function DayPad({ calendarId, selectedDay, session, entries, note
       {/* Scrollable: entries only */}
       <div className="overflow-y-auto px-4 flex flex-col gap-2 min-h-0">
         {entries.length > 0 && (
-          <div className="divide-y divide-slate-700/60">
+          <div className="divide-y divide-zinc-700/60">
             {entries.map(entry => (
               <EntryRow
                 key={entry.id}

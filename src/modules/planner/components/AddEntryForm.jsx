@@ -63,24 +63,24 @@ export default function AddEntryForm({ activeColor, selectedDay, calendarId, use
           onKeyDown={e => { if (e.key === 'Enter') submit() }}
           placeholder="Add entry…"
           disabled={saving}
-          className="flex-1 bg-slate-800 text-white placeholder-slate-500 rounded-lg px-3 py-2.5 text-base outline-none focus:ring-1 focus:ring-slate-500 min-w-0"
+          className="flex-1 bg-zinc-800 text-white placeholder-zinc-500 rounded-lg px-3 py-2.5 text-base outline-none focus:ring-1 focus:ring-zinc-500 min-w-0"
         />
         <button
           onClick={submit}
           disabled={saving || !text.trim()}
-          className="bg-slate-700 text-white rounded-lg px-4 py-2.5 text-base font-medium active:bg-slate-600 disabled:opacity-40 shrink-0"
+          className="bg-zinc-700 text-white rounded-lg px-4 py-2.5 text-base font-medium active:bg-zinc-600 disabled:opacity-40 shrink-0"
         >
           Add
         </button>
       </div>
 
       <div className="flex items-center gap-2 text-sm flex-wrap">
-        <label className="flex items-center gap-2 text-slate-400 cursor-pointer shrink-0">
+        <label className="flex items-center gap-2 text-zinc-400 cursor-pointer shrink-0">
           <input
             type="checkbox"
             checked={repeat}
             onChange={e => setRepeat(e.target.checked)}
-            className="accent-slate-400"
+            className="accent-zinc-400"
           />
           Repeat weekly until
         </label>
@@ -90,12 +90,12 @@ export default function AddEntryForm({ activeColor, selectedDay, calendarId, use
             value={untilDate}
             min={selectedDay}
             onChange={e => setUntilDate(e.target.value)}
-            className="bg-slate-800 text-white rounded px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-slate-500"
+            className="bg-zinc-800 text-white rounded px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-zinc-500"
           />
         )}
       </div>
 
-      {batchMsg && <p className="text-xs text-slate-400">{batchMsg}</p>}
+      {batchMsg && <p className="text-xs text-zinc-400">{batchMsg}</p>}
     </div>
   )
 }

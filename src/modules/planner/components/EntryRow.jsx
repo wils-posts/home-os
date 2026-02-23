@@ -17,7 +17,7 @@ export default function EntryRow({ entry, selectedDay, onDeleted, onUpdated, onT
   // null = no prompt shown, 'confirm' = showing delete options
   const [deleteState, setDeleteState] = useState(null)
 
-  const pill = PILL_STYLES[entry.color] || { bg: 'bg-slate-500', label: '?' }
+  const pill = PILL_STYLES[entry.color] || { bg: 'bg-zinc-500', label: '?' }
 
   async function handleSave() {
     setSaving(true)
@@ -76,27 +76,27 @@ export default function EntryRow({ entry, selectedDay, onDeleted, onUpdated, onT
   // Edit mode
   if (isEditing) {
     return (
-      <div className="flex flex-col gap-2 bg-slate-800 rounded-lg p-3 my-1">
+      <div className="flex flex-col gap-2 bg-zinc-800 rounded-lg p-3 my-1">
         <input
           type="text"
           value={editText}
           onChange={e => setEditText(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') handleSave() }}
           autoFocus
-          className="bg-slate-700 text-white rounded-lg px-3 py-2 text-base outline-none focus:ring-1 focus:ring-slate-500"
+          className="bg-zinc-700 text-white rounded-lg px-3 py-2 text-base outline-none focus:ring-1 focus:ring-zinc-500"
         />
         <ColorPicker activeColor={editColor} onChange={setEditColor} />
         <div className="flex gap-2">
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-slate-600 text-white rounded-lg px-4 py-2 text-sm font-medium active:bg-slate-500 disabled:opacity-40"
+            className="bg-zinc-600 text-white rounded-lg px-4 py-2 text-sm font-medium active:bg-zinc-500 disabled:opacity-40"
           >
             Save
           </button>
           <button
             onClick={handleCancel}
-            className="text-slate-400 text-sm px-3 py-2"
+            className="text-zinc-400 text-sm px-3 py-2"
           >
             Cancel
           </button>
@@ -109,7 +109,7 @@ export default function EntryRow({ entry, selectedDay, onDeleted, onUpdated, onT
   if (deleteState === 'confirm') {
     return (
       <div className="flex flex-col gap-2 py-2.5 px-1">
-        <p className="text-sm text-slate-300 font-medium">Delete "{entry.text}"?</p>
+        <p className="text-sm text-zinc-300 font-medium">Delete "{entry.text}"?</p>
         <div className="flex gap-2 flex-wrap">
           <button
             onClick={handleDeleteOne}
@@ -127,7 +127,7 @@ export default function EntryRow({ entry, selectedDay, onDeleted, onUpdated, onT
           )}
           <button
             onClick={() => setDeleteState(null)}
-            className="text-slate-400 text-sm px-3 py-2"
+            className="text-zinc-400 text-sm px-3 py-2"
           >
             Cancel
           </button>
@@ -145,7 +145,7 @@ export default function EntryRow({ entry, selectedDay, onDeleted, onUpdated, onT
       </span>
       {/* Entry text */}
       <span
-        className="flex-1 text-base text-slate-100 font-medium cursor-pointer"
+        className="flex-1 text-base text-zinc-100 font-medium cursor-pointer"
         onClick={() => setIsEditing(true)}
       >
         {entry.text}
@@ -154,7 +154,7 @@ export default function EntryRow({ entry, selectedDay, onDeleted, onUpdated, onT
       <button
         onClick={() => entry.batch_id ? setDeleteState('confirm') : handleDeleteOne()}
         aria-label="Delete entry"
-        className="text-slate-600 active:text-slate-300 text-xl leading-none px-1 min-w-[44px] text-center"
+        className="text-zinc-600 active:text-zinc-300 text-xl leading-none px-1 min-w-[44px] text-center"
       >
         ×
       </button>

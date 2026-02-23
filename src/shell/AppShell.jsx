@@ -11,8 +11,8 @@ export default function AppShell() {
 
   if (auth.status === 'loading') {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-slate-900">
-        <div className="w-8 h-8 border-4 border-slate-600 border-t-slate-300 rounded-full animate-spin" />
+      <div className="flex items-center justify-center min-h-screen bg-zinc-900">
+        <div className="w-8 h-8 border-4 border-zinc-600 border-t-zinc-300 rounded-full animate-spin" />
       </div>
     )
   }
@@ -23,14 +23,14 @@ export default function AppShell() {
 
   if (auth.status === 'blocked') {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center bg-slate-900">
+      <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center bg-zinc-900">
         <p className="text-white font-medium mb-2">Access denied</p>
-        <p className="text-slate-400 text-sm mb-8">
+        <p className="text-zinc-400 text-sm mb-8">
           You're signed in but not authorised for this household.
         </p>
         <button
           onClick={auth.signOut}
-          className="px-6 py-2 rounded-lg border border-slate-600 text-slate-400 text-sm font-medium active:scale-95 transition-transform"
+          className="px-6 py-2 rounded-lg border border-zinc-600 text-zinc-400 text-sm font-medium active:scale-95 transition-transform"
         >
           Sign out
         </button>
@@ -40,7 +40,7 @@ export default function AppShell() {
 
   return (
     <Routes>
-      <Route path="/" element={<HomeScreen />} />
+      <Route path="/" element={<HomeScreen auth={auth} />} />
       <Route path="/planner" element={<PlannerView auth={auth} />} />
       <Route path="/stock" element={<StockView auth={auth} />} />
       <Route path="/stock/shopping" element={<ShoppingView auth={auth} />} />

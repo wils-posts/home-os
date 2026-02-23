@@ -14,7 +14,7 @@ export default function StatePill({ state, onTouchEnd, onClick, disabled, compac
         ${size} rounded-full font-semibold
         flex items-center justify-center shrink-0
         transition-opacity duration-150
-        ${STATE_COLORS[state] ?? 'bg-slate-400 text-white'}
+        ${STATE_COLORS[state] ?? 'bg-zinc-400 text-white'}
         ${disabled ? 'opacity-50 cursor-not-allowed' : 'active:scale-95'}
       `}
     >

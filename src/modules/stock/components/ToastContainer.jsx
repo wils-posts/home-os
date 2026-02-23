@@ -6,7 +6,7 @@ export default function ToastContainer({ toasts }) {
       {toasts.map(toast => (
         <div
           key={toast.id}
-          className="bg-slate-800 text-white text-sm rounded-lg px-4 py-3 shadow-lg animate-fadeSlideUp"
+          className="bg-zinc-800 text-white text-sm rounded-lg px-4 py-3 shadow-lg animate-fadeSlideUp"
         >
           {toast.message}
         </div>
