@@ -88,9 +88,13 @@ export default function TaskRow({ task, onComplete, onUpdate, onDelete }) {
       return
     }
 
-    if (Math.abs(deltaX) > 10) cancelLongPress()
+    if (Math.abs(deltaX) > 50) cancelLongPress()
 
-    const SWIPE_DEADZONE = 20
+    // Don't move the row at all while a long-press is still pending
+    if (longPressTimer.current) return
+
+    // Only start moving the row after a 50px dead zone — requires a deliberate swipe
+    const SWIPE_DEADZONE = 50
     if (Math.abs(deltaX) < SWIPE_DEADZONE) return
     const effectiveDelta = deltaX < 0
       ? deltaX + SWIPE_DEADZONE
