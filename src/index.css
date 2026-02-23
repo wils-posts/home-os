@@ -33,18 +33,18 @@ html.theme-light {
 }
 
 html.theme-sage {
-  --surface-0:     #f0ede6;
-  --surface-1:     #e6e1d8;
-  --surface-2:     #d6d0c4;
-  --border-subtle: #b8b09c;
-  --text-muted:    #7a7060;
-  --text-primary:  #2c2416;
-  --text-heading:  #1a1208;
-  --surface-input: #e6e1d8;
-  --ring-focus:    #8a7d6a;
-  --spinner-track: #b8b09c;
-  --spinner-head:  #4a7c59;
-  --action-surface:#6b8f72;
+  --surface-0:     #d4e6d4;
+  --surface-1:     #c2d9c2;
+  --surface-2:     #adc9ad;
+  --border-subtle: #8aae8a;
+  --text-muted:    #4a6b4a;
+  --text-primary:  #1a3320;
+  --text-heading:  #0d2213;
+  --surface-input: #c2d9c2;
+  --ring-focus:    #5a8c5a;
+  --spinner-track: #8aae8a;
+  --spinner-head:  #2d6b3a;
+  --action-surface:#5a8c5a;
 }
 
 /* Fallback = dark values for any unstyled flash */
