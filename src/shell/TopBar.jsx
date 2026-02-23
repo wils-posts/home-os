@@ -4,7 +4,7 @@ export default function TopBar({ centre, right }) {
   const navigate = useNavigate()
 
   return (
-    <div className="shrink-0 px-4 pt-3 pb-2 grid grid-cols-3 items-center bg-[var(--surface-0)]">
+    <div className="shrink-0 px-4 pt-3 pb-2 grid grid-cols-[44px_1fr_44px] items-center bg-[var(--surface-0)]">
       {/* Left: home button */}
       <button
         onClick={() => navigate('/')}
