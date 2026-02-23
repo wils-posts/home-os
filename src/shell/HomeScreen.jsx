@@ -59,7 +59,7 @@ export default function HomeScreen({ auth }) {
       <div className="px-6 pt-8 pb-6 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">HomeOS</h1>
-          <p className="text-zinc-400 text-sm mt-1">Your household, all in one place</p>
+          <p className="text-zinc-400 text-sm mt-1">Version 1.2</p>
         </div>
         <button
           onClick={auth.signOut}
