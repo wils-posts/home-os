@@ -208,8 +208,8 @@ export default function ItemRow({
       <div
         className={`relative flex items-center ${gap} px-4 ${py} transition-colors duration-75 ${pressing ? 'bg-[var(--surface-2)]' : 'bg-[var(--surface-1)]'}`}
         style={{
-          transform: editing ? 'none' : `translateX(${swipeX}px) scale(${pressing ? 0.985 : 1})`,
-          transition: swiping ? 'none' : pressing ? `transform ${LONGPRESS_MS}ms ease-out` : 'transform 0.2s ease',
+          transform: editing ? 'none' : `translateX(${swipeX}px)`,
+          transition: swiping ? 'none' : 'transform 0.2s ease',
         }}
         onTouchStart={editing ? undefined : handleTouchStart}
         onTouchMove={editing ? undefined : handleTouchMove}
