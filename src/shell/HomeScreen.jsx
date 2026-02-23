@@ -122,7 +122,7 @@ export default function HomeScreen({ auth }) {
               <span className="text-2xl font-bold leading-none text-[var(--text-heading)]">
                 {totalCount}
               </span>
-              <span className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wide">tasks</span>
+              <span className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wide">total</span>
             </div>
 
             <div className="w-px h-6 bg-[var(--border-subtle)]" />
