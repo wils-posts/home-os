@@ -101,6 +101,7 @@ export default function BulkCookView() {
         ) : (
           /* No active cycle */
           <>
+            <p className="text-lg font-semibold text-[var(--text-heading)]">No active cook session</p>
             <button
               onClick={handleStartNew}
               disabled={starting}
