@@ -48,6 +48,29 @@ const TOOLS = [
       </svg>
     ),
   },
+  {
+    id: 'decider',
+    label: 'HomeDecider',
+    route: '/decider',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="2" x2="12" y2="12" />
+        <line x1="12" y1="12" x2="18" y2="7" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
 ]
 
 export default function HomeScreen({ auth }) {
@@ -63,7 +86,7 @@ export default function HomeScreen({ auth }) {
       <div className="px-6 pt-8 pb-6 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-[var(--text-heading)]">HomeOS</h1>
-          <p className="text-[var(--text-muted)] text-sm mt-1">Version 1.3</p>
+          <p className="text-[var(--text-muted)] text-sm mt-1">Version 1.4</p>
         </div>
         <div className="flex items-center gap-2 mt-1">
           <button

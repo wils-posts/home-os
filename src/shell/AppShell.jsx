@@ -7,6 +7,7 @@ import StockView from '../modules/stock/StockView'
 import ShoppingView from '../modules/stock/ShoppingView'
 import TodoView from '../modules/todo/TodoView'
 import ArchiveView from '../modules/todo/ArchiveView'
+import DeciderView from '../modules/decider/DeciderView'
 
 export default function AppShell() {
   const auth = useAuth()
@@ -48,6 +49,7 @@ export default function AppShell() {
       <Route path="/stock/shopping" element={<ShoppingView auth={auth} />} />
       <Route path="/todo" element={<TodoView auth={auth} />} />
       <Route path="/todo/archive" element={<ArchiveView auth={auth} />} />
+      <Route path="/decider" element={<DeciderView />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
