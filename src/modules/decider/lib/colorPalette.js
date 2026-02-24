@@ -1,16 +1,32 @@
-function hslToString(h, s, l) {
-  return `hsl(${h}, ${s}%, ${l}%)`
-}
+// Curated muted palettes — soft and harmonious on both light and dark backgrounds
+const DARK_PALETTE = [
+  '#7b93a8',  // slate blue
+  '#8a7fa0',  // dusty lavender
+  '#7a9e8e',  // muted teal
+  '#a08878',  // warm terracotta
+  '#8a9e78',  // sage green
+  '#9e8a78',  // dusty rose
+  '#7890a0',  // steel blue
+  '#9878a0',  // soft mauve
+]
+
+const LIGHT_PALETTE = [
+  '#7b9ab5',  // slate blue
+  '#9b8fbb',  // dusty lavender
+  '#6fa08e',  // muted teal
+  '#b08878',  // warm terracotta
+  '#7fa068',  // sage green
+  '#b07880',  // dusty rose
+  '#6888a8',  // steel blue
+  '#a078a8',  // soft mauve
+]
 
 export function generateSliceColors(count, isDark = false) {
   if (count === 0) return []
+  const palette = isDark ? DARK_PALETTE : LIGHT_PALETTE
   const colors = []
-  const baseLightness = isDark ? 38 : 65
   for (let i = 0; i < count; i++) {
-    const hue = (i * 360 / count) % 360
-    const saturation = i % 2 === 0 ? 45 : 35
-    const lightness = baseLightness + (i % 3 === 0 ? 5 : i % 3 === 1 ? -3 : 0)
-    colors.push(hslToString(hue, saturation, lightness))
+    colors.push(palette[i % palette.length])
   }
   return colors
 }

@@ -1,6 +1,6 @@
 const LABEL_FONT_FAMILY = 'Inter, system-ui, sans-serif'
-const LABEL_FONT_SIZE_MAX = 14
-const LABEL_FONT_SIZE_MIN = 9
+const LABEL_FONT_SIZE_MAX = 15
+const LABEL_FONT_SIZE_MIN = 10
 const LABEL_MAX_WIDTH_RATIO = 0.38
 const MIN_SLICE_ARC_FOR_LABEL = 20
 
@@ -12,14 +12,14 @@ export function drawSliceLabel(ctx, label, centerX, centerY, radius, startAngle,
   const maxLabelWidth = radius * LABEL_MAX_WIDTH_RATIO
 
   let fontSize = LABEL_FONT_SIZE_MAX
-  ctx.font = `${fontSize}px ${LABEL_FONT_FAMILY}`
+  ctx.font = `600 ${fontSize}px ${LABEL_FONT_FAMILY}`
 
   let displayLabel = label
   let measured = ctx.measureText(displayLabel)
 
   while (measured.width > maxLabelWidth && fontSize > LABEL_FONT_SIZE_MIN) {
     fontSize -= 1
-    ctx.font = `${fontSize}px ${LABEL_FONT_FAMILY}`
+    ctx.font = `600 ${fontSize}px ${LABEL_FONT_FAMILY}`
     measured = ctx.measureText(displayLabel)
   }
 
@@ -43,7 +43,7 @@ export function drawSliceLabel(ctx, label, centerX, centerY, radius, startAngle,
   }
   ctx.rotate(textAngle)
 
-  ctx.fillStyle = '#1a1a2e'
+  ctx.fillStyle = 'rgba(255,255,255,0.92)'
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   ctx.fillText(displayLabel, 0, 0)
