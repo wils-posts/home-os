@@ -1,7 +1,7 @@
 import { generateSliceColors, getNativeSliceColors } from './colorPalette'
 import { drawSliceLabel } from './textLayout'
 
-const SLICE_GAP_COLOR = 'rgba(0,0,0,0.25)'
+const OVERDRAW = 0.015 // radians — closes anti-alias seams between slices
 
 export function renderStaticWheel(slices, radius, isDark = false, colourMode = 'multi', dpr = 1) {
   const diameter = radius * 2
@@ -37,23 +37,10 @@ export function renderStaticWheel(slices, radius, isDark = false, colourMode = '
 
     ctx.beginPath()
     ctx.moveTo(center, center)
-    ctx.arc(center, center, radius - 1, currentAngle, currentAngle + sliceAngle)
+    ctx.arc(center, center, radius, currentAngle, currentAngle + sliceAngle + OVERDRAW)
     ctx.closePath()
     ctx.fillStyle = colors[i % colors.length]
     ctx.fill()
-
-    // Thin gap lines between slices only (radial lines from center)
-    ctx.save()
-    ctx.strokeStyle = SLICE_GAP_COLOR
-    ctx.lineWidth = 1
-    ctx.beginPath()
-    ctx.moveTo(center, center)
-    ctx.lineTo(
-      center + Math.cos(currentAngle) * (radius - 1),
-      center + Math.sin(currentAngle) * (radius - 1)
-    )
-    ctx.stroke()
-    ctx.restore()
 
     drawSliceLabel(ctx, slice.label, center, center, radius, currentAngle, sliceAngle, slices.length)
 
