@@ -43,7 +43,21 @@ export function useDeciderData() {
   useEffect(() => {
     async function init() {
       setLoading(true)
-      const data = await fetchProfiles()
+      let data = await fetchProfiles()
+
+      // Bootstrap: create a default profile if none exist
+      if (!data || data.length === 0) {
+        const { data: created, error } = await supabase
+          .from('decider_profiles')
+          .insert({ name: 'Evening Activity', settings: DEFAULT_SETTINGS })
+          .select()
+          .single()
+        if (!error && created) {
+          data = [created]
+          setProfiles(data)
+        }
+      }
+
       if (data && data.length > 0) {
         const saved = localStorage.getItem(STORAGE_KEY)
         const found = saved && data.find(p => p.id === saved)

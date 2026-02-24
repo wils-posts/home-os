@@ -98,16 +98,14 @@ export default function DeciderView() {
       ) : (
         <>
           {/* Profile selector */}
-          {profiles.length > 0 && (
-            <ProfileSelector
-              profiles={profiles}
-              activeProfileId={activeProfileId}
-              onSwitch={switchActiveProfile}
-              onCreate={createProfile}
-              onRename={renameProfile}
-              onDelete={deleteProfile}
-            />
-          )}
+          <ProfileSelector
+            profiles={profiles}
+            activeProfileId={activeProfileId}
+            onSwitch={switchActiveProfile}
+            onCreate={createProfile}
+            onRename={renameProfile}
+            onDelete={deleteProfile}
+          />
 
           <div className="flex-1 overflow-y-auto">
             {/* Wheel area */}
