@@ -11,9 +11,7 @@ export default function ShopStage() {
     generateShopList, toggleShopItem, updateShopItem, addShopItem, deleteShopItem,
   } = useBulkCookData()
 
-  const [regenerateConfirm, setRegenerateConfirm] = useState(false)
   const [generatingList, setGeneratingList] = useState(false)
-  // Track which item is being edited inline
   const [editingId, setEditingId] = useState(null)
   const generatedRef = useRef(false)
 
@@ -26,13 +24,6 @@ export default function ShopStage() {
       generateShopList(selectedRecipes).finally(() => setGeneratingList(false))
     }
   }, [loading, cycle, shopItems.length, selectedRecipes]) // eslint-disable-line
-
-  async function handleRegenerate() {
-    setRegenerateConfirm(false)
-    setGeneratingList(true)
-    await generateShopList(selectedRecipes)
-    setGeneratingList(false)
-  }
 
   async function handleStartNew() {
     const newCycle = await startNewCycle()
@@ -60,7 +51,7 @@ export default function ShopStage() {
       onStartNew={handleStartNew}
     >
       {/* Header row */}
-      <div className="px-4 pt-4 pb-2 flex items-center justify-between">
+      <div className="px-4 pt-4 pb-2">
         <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">
           Shopping List
           {shopItems.length > 0 && (
@@ -69,31 +60,6 @@ export default function ShopStage() {
             </span>
           )}
         </p>
-
-        {regenerateConfirm ? (
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[var(--text-muted)]">Overwrite edits?</span>
-            <button
-              onClick={() => setRegenerateConfirm(false)}
-              className="text-xs px-2 py-1 rounded border border-[var(--border-subtle)] text-[var(--text-muted)]"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleRegenerate}
-              className="text-xs px-2 py-1 rounded bg-need text-white font-semibold"
-            >
-              Yes
-            </button>
-          </div>
-        ) : (
-          <button
-            onClick={() => setRegenerateConfirm(true)}
-            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] active:scale-95 transition-transform"
-          >
-            Regenerate
-          </button>
-        )}
       </div>
 
       {/* List body */}
@@ -106,7 +72,7 @@ export default function ShopStage() {
           {selectedRecipes.length === 0 ? (
             <p className="text-sm text-[var(--text-muted)] italic">No recipes selected yet — go back to Plan to add some.</p>
           ) : (
-            <p className="text-sm text-[var(--text-muted)] italic">No items yet. Tap Regenerate to build list from selected recipes.</p>
+            <p className="text-sm text-[var(--text-muted)] italic">No items yet.</p>
           )}
         </div>
       ) : (
@@ -129,10 +95,7 @@ export default function ShopStage() {
       {/* Add item */}
       <div className="px-4 pt-3 pb-2">
         <button
-          onClick={async () => {
-            await addShopItem()
-            // The new item will appear; we could set editingId but we don't have it yet
-          }}
+          onClick={async () => { await addShopItem() }}
           className="flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -148,7 +111,6 @@ export default function ShopStage() {
 
 function ShopItemRow({ item, editing, onToggle, onEdit, onBlur, onUpdate, onDelete }) {
   const nameRef = useRef(null)
-  const qtyRef = useRef(null)
 
   useEffect(() => {
     if (editing && nameRef.current) nameRef.current.focus()
@@ -169,24 +131,6 @@ function ShopItemRow({ item, editing, onToggle, onEdit, onBlur, onUpdate, onDele
           </svg>
         )}
       </button>
-
-      {/* Qty */}
-      {editing ? (
-        <input
-          ref={qtyRef}
-          defaultValue={item.qty_text}
-          onBlur={e => onUpdate({ qty_text: e.target.value })}
-          placeholder="qty"
-          className="w-14 text-sm text-[var(--text-muted)] bg-transparent border-b border-[var(--border-subtle)] focus:outline-none tabular-nums text-right"
-        />
-      ) : (
-        <span
-          onClick={onEdit}
-          className={`shrink-0 w-14 text-right text-sm tabular-nums text-[var(--text-muted)] ${item.checked ? 'line-through' : ''}`}
-        >
-          {item.qty_text || ''}
-        </span>
-      )}
 
       {/* Name */}
       {editing ? (

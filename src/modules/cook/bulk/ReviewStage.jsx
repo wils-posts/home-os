@@ -42,13 +42,10 @@ export default function ReviewStage() {
     >
       {/* Review notes */}
       <div className="px-4 pt-4 pb-4">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
-          Review Notes
-        </p>
         <textarea
           defaultValue={cycle.review_notes ?? ''}
           onBlur={e => setReviewNotes(e.target.value)}
-          placeholder="What went well? What to change next time? Any recipe tweaks?"
+          placeholder="Review notes…"
           rows={8}
           className="w-full px-3 py-2 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-1)] text-[var(--text-primary)] text-sm placeholder:text-[var(--text-muted)] resize-none focus:outline-none focus:ring-1 focus:ring-[var(--ring-focus)] leading-relaxed"
         />

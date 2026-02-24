@@ -257,6 +257,49 @@ export function useBulkCookData() {
     if (!error) setCycle(c => ({ ...c, review_notes: text || null }))
   }
 
+  // ── Archive view ────────────────────────────────────────────────────────────
+  async function fetchArchivedCycles() {
+    // Fetch archived cycles newest-first
+    const { data: cycles, error: cyclesError } = await supabase
+      .from('bulk_cycles')
+      .select('*')
+      .eq('status', 'archived')
+      .order('archived_at', { ascending: false })
+
+    if (cyclesError || !cycles) return []
+
+    // For each cycle, fetch recipe names and cook log
+    const enriched = await Promise.all(cycles.map(async (c) => {
+      const [recipesRes, logRes] = await Promise.all([
+        supabase
+          .from('bulk_cycle_recipes')
+          .select('cook_recipes(title)')
+          .eq('cycle_id', c.id)
+          .order('added_at', { ascending: true }),
+        supabase
+          .from('bulk_cook_log')
+          .select('*')
+          .eq('cycle_id', c.id)
+          .order('logged_at', { ascending: true }),
+      ])
+      return {
+        ...c,
+        recipes: (recipesRes.data ?? []).map(r => r.cook_recipes?.title).filter(Boolean),
+        log: logRes.data ?? [],
+      }
+    }))
+
+    return enriched
+  }
+
+  async function deleteArchivedCycle(id) {
+    const { error } = await supabase
+      .from('bulk_cycles')
+      .delete()
+      .eq('id', id)
+    return !error
+  }
+
   return {
     cycle,
     selectedRecipes,
@@ -285,5 +328,8 @@ export function useBulkCookData() {
     deleteLogEntry,
     // Review
     setReviewNotes,
+    // Archive view
+    fetchArchivedCycles,
+    deleteArchivedCycle,
   }
 }

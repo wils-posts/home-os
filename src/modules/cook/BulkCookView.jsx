@@ -4,7 +4,7 @@ import TopBar from '../../shell/TopBar'
 import { useBulkCookData } from './hooks/useBulkCookData'
 
 const STAGE_LABELS = {
-  plan: 'Plan', shop: 'Shop', prep: 'Prep', cook: 'Cook', review: 'Review',
+  plan: 'Plan', shop: 'Shop', prep: 'Cook', cook: 'Cook', review: 'Review',
 }
 
 export default function BulkCookView() {
@@ -20,18 +20,33 @@ export default function BulkCookView() {
     setStarting(false)
   }
 
-  async function handleResume() {
-    if (cycle) navigate('/cook/bulk/' + cycle.stage)
+  function handleResume() {
+    if (!cycle) return
+    // Map old 'prep' stage to 'cook' for legacy archived-then-resumed cycles
+    const stage = cycle.stage === 'prep' ? 'cook' : cycle.stage
+    navigate('/cook/bulk/' + stage)
   }
+
+  const archiveButton = (
+    <button
+      onClick={() => navigate('/cook/bulk/archive')}
+      aria-label="View archive"
+      className="h-9 w-9 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] flex items-center justify-center active:scale-95 transition-transform"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="21 8 21 21 3 21 3 8" />
+        <rect x="1" y="3" width="22" height="5" />
+        <line x1="10" y1="12" x2="14" y2="12" />
+      </svg>
+    </button>
+  )
 
   return (
     <div
       className="flex flex-col bg-[var(--surface-0)] text-[var(--text-primary)] max-w-md mx-auto"
       style={{ height: '100dvh' }}
     >
-      <TopBar
-        centre={<span className="text-sm font-semibold text-[var(--text-heading)]">Bulk Cook</span>}
-      />
+      <TopBar centre={null} right={archiveButton} />
 
       <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6">
         {loading ? (

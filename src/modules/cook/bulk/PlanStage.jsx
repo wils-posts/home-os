@@ -16,7 +16,6 @@ export default function PlanStage() {
 
   // Only show bulk-tagged recipes
   const bulkRecipes = allRecipes.filter(r => (r.tags ?? []).includes('bulk'))
-
   const selectedIds = new Set(selectedRecipes.map(r => r.id))
 
   async function handleStartNew() {
@@ -40,15 +39,26 @@ export default function PlanStage() {
     )
   }
 
+  const planNotesSlot = (
+    <textarea
+      defaultValue={cycle.plan_notes ?? ''}
+      onBlur={e => setPlanNotes(e.target.value)}
+      placeholder="Plan notes…"
+      rows={3}
+      className="w-full px-3 py-2 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-1)] text-[var(--text-primary)] text-sm placeholder:text-[var(--text-muted)] resize-none focus:outline-none focus:ring-1 focus:ring-[var(--ring-focus)] leading-relaxed"
+    />
+  )
+
   return (
     <StageShell
       currentStage="plan"
       setStage={setStage}
       onStartNew={handleStartNew}
+      bottomSlot={planNotesSlot}
     >
-      {/* Recipe selection */}
-      <div className="px-4 pt-4 pb-2">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
+      {/* Recipe selection — fills available space and scrolls internally */}
+      <div className="flex flex-col h-full px-4 pt-4 pb-2">
+        <p className="shrink-0 text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
           Select Recipes
           {bulkRecipes.length > 0 && (
             <span className="ml-2 font-normal normal-case tracking-normal">
@@ -57,70 +67,57 @@ export default function PlanStage() {
           )}
         </p>
 
-        {recipesLoading ? (
-          <div className="flex justify-center py-8">
-            <div className="w-6 h-6 border-4 border-[var(--spinner-track)] border-t-[var(--spinner-head)] rounded-full animate-spin" />
-          </div>
-        ) : bulkRecipes.length === 0 ? (
-          <div className="py-8 text-center">
-            <p className="text-sm text-[var(--text-muted)] italic">No recipes tagged "bulk" yet.</p>
-            <p className="text-xs text-[var(--text-muted)] mt-1">Add the "bulk" tag to recipes in the Recipe Library.</p>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-2">
-            {bulkRecipes.map(recipe => {
-              const selected = selectedIds.has(recipe.id)
-              return (
-                <button
-                  key={recipe.id}
-                  onClick={() => toggleRecipe(recipe.id)}
-                  className={`w-full text-left px-4 py-4 rounded-2xl border transition-colors active:scale-95 transition-transform ${
-                    selected
-                      ? 'bg-[var(--action-surface)] border-[var(--action-surface)]'
-                      : 'bg-[var(--surface-1)] border-[var(--border-subtle)]'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    {/* Checkbox circle */}
-                    <span className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                      selected ? 'border-[var(--text-heading)] bg-[var(--text-heading)]' : 'border-[var(--border-subtle)]'
-                    }`}>
-                      {selected && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--surface-0)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      )}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <p className={`font-semibold leading-snug text-sm ${selected ? 'text-[var(--text-heading)]' : 'text-[var(--text-heading)]'}`}>
-                        {recipe.title}
-                      </p>
-                      {(recipe.tags ?? []).filter(t => t !== 'bulk').length > 0 && (
-                        <p className="text-xs text-[var(--text-muted)] mt-0.5">
-                          {recipe.tags.filter(t => t !== 'bulk').join(', ')}
+        <div className="flex-1 overflow-y-auto min-h-0 -mx-1 px-1">
+          {recipesLoading ? (
+            <div className="flex justify-center py-8">
+              <div className="w-6 h-6 border-4 border-[var(--spinner-track)] border-t-[var(--spinner-head)] rounded-full animate-spin" />
+            </div>
+          ) : bulkRecipes.length === 0 ? (
+            <div className="py-8 text-center">
+              <p className="text-sm text-[var(--text-muted)] italic">No recipes tagged "bulk" yet.</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">Add the "bulk" tag to recipes in the Recipe Library.</p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2 pb-2">
+              {bulkRecipes.map(recipe => {
+                const selected = selectedIds.has(recipe.id)
+                return (
+                  <button
+                    key={recipe.id}
+                    onClick={() => toggleRecipe(recipe.id)}
+                    className={`w-full text-left px-4 py-4 rounded-2xl border active:scale-95 transition-transform ${
+                      selected
+                        ? 'bg-[var(--action-surface)] border-[var(--action-surface)]'
+                        : 'bg-[var(--surface-1)] border-[var(--border-subtle)]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                        selected ? 'border-[var(--text-heading)] bg-[var(--text-heading)]' : 'border-[var(--border-subtle)]'
+                      }`}>
+                        {selected && (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--surface-0)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        )}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold leading-snug text-sm text-[var(--text-heading)]">
+                          {recipe.title}
                         </p>
-                      )}
+                        {(recipe.tags ?? []).filter(t => t !== 'bulk').length > 0 && (
+                          <p className="text-xs text-[var(--text-muted)] mt-0.5">
+                            {recipe.tags.filter(t => t !== 'bulk').join(', ')}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </button>
-              )
-            })}
-          </div>
-        )}
-      </div>
-
-      {/* Plan notes */}
-      <div className="px-4 pt-5 pb-4">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
-          Plan Notes
-        </p>
-        <textarea
-          defaultValue={cycle.plan_notes ?? ''}
-          onBlur={e => setPlanNotes(e.target.value)}
-          placeholder="Any notes for this cook session…"
-          rows={4}
-          className="w-full px-3 py-2 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-1)] text-[var(--text-primary)] text-sm placeholder:text-[var(--text-muted)] resize-none focus:outline-none focus:ring-1 focus:ring-[var(--ring-focus)] leading-relaxed"
-        />
+                  </button>
+                )
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </StageShell>
   )
