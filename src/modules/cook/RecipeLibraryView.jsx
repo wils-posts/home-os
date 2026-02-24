@@ -1,13 +1,36 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TopBar from '../../shell/TopBar'
 import { useCookData } from './hooks/useCookData'
+
+const SCROLL_KEY = 'recipeLibraryScroll'
 
 export default function RecipeLibraryView() {
   const navigate = useNavigate()
   const { recipes, loading } = useCookData()
   const [search, setSearch] = useState('')
   const [activeTag, setActiveTag] = useState(null)
+  const listRef = useRef(null)
+  const restoredRef = useRef(false)
+
+  // Restore scroll position once recipes have loaded and list is rendered
+  useEffect(() => {
+    if (loading || restoredRef.current || !listRef.current) return
+    const saved = sessionStorage.getItem(SCROLL_KEY)
+    if (saved) {
+      listRef.current.scrollTop = parseInt(saved, 10)
+      sessionStorage.removeItem(SCROLL_KEY)
+    }
+    restoredRef.current = true
+  }, [loading, recipes])
+
+  // Save scroll position before navigating to a recipe
+  function handleRecipeClick(id) {
+    if (listRef.current) {
+      sessionStorage.setItem(SCROLL_KEY, listRef.current.scrollTop)
+    }
+    navigate('/cook/recipes/' + id)
+  }
 
   // Derive unique tags from all recipes
   const allTags = useMemo(() => {
@@ -109,7 +132,7 @@ export default function RecipeLibraryView() {
       )}
 
       {/* Recipe list */}
-      <main className="flex-1 overflow-y-auto">
+      <main ref={listRef} className="flex-1 overflow-y-auto">
         {loading ? (
           <div className="flex justify-center pt-16">
             <div className="w-8 h-8 border-4 border-[var(--spinner-track)] border-t-[var(--spinner-head)] rounded-full animate-spin" />
@@ -124,7 +147,7 @@ export default function RecipeLibraryView() {
               <RecipeCard
                 key={recipe.id}
                 recipe={recipe}
-                onClick={() => navigate('/cook/recipes/' + recipe.id)}
+                onClick={() => handleRecipeClick(recipe.id)}
               />
             ))}
           </div>
