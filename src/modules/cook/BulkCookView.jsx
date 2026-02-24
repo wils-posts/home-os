@@ -101,10 +101,6 @@ export default function BulkCookView() {
         ) : (
           /* No active cycle */
           <>
-            <div className="text-center">
-              <p className="text-lg font-semibold text-[var(--text-heading)] mb-2">No active cook session</p>
-              <p className="text-sm text-[var(--text-muted)]">Start a new bulk cook to begin planning.</p>
-            </div>
             <button
               onClick={handleStartNew}
               disabled={starting}

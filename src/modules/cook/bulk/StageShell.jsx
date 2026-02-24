@@ -87,11 +87,7 @@ export default function StageShell({
       style={{ height: '100dvh' }}
     >
       <TopBar
-        centre={
-          <span className="text-sm font-semibold text-[var(--text-heading)]">
-            {STAGES.find(s => s.key === currentStage)?.label ?? 'Bulk Cook'}
-          </span>
-        }
+        centre={null}
         right={rightSlot}
       />
 
