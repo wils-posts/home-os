@@ -20,6 +20,7 @@ export default function StageShell({
   currentStage,   // 'plan' | 'shop' | 'cook' | 'review'
   setStage,       // async fn to persist stage change
   onStartNew,     // async fn — archives current + starts new cycle
+  onCancelCook,   // async fn — cancels current cycle, returns to entry screen
   children,
   nextLabel,      // override next button label
   onNext,         // override next behaviour
@@ -28,6 +29,7 @@ export default function StageShell({
 }) {
   const navigate = useNavigate()
   const [confirmNew, setConfirmNew] = useState(false)
+  const [cancelling, setCancelling] = useState(false)
   const [starting, setStarting] = useState(false)
 
   async function handlePillClick(stage) {
@@ -49,6 +51,14 @@ export default function StageShell({
     setConfirmNew(false)
     await onStartNew()
     setStarting(false)
+  }
+
+  async function handleCancelCook() {
+    setCancelling(true)
+    setConfirmNew(false)
+    await onCancelCook()
+    navigate('/cook/bulk')
+    setCancelling(false)
   }
 
   const rightSlot = (
@@ -111,20 +121,24 @@ export default function StageShell({
       {/* Confirm new cook — modal overlay */}
       {confirmNew && (
         <div className="shrink-0 mx-4 mb-3 bg-[var(--surface-1)] border border-[var(--border-subtle)] rounded-2xl px-5 py-4 flex flex-col gap-3">
-          <p className="text-sm text-[var(--text-muted)] text-center">
-            Archive current cook and start fresh?
-          </p>
-          <div className="flex gap-3">
+          <div className="flex gap-2">
             <button
               onClick={() => setConfirmNew(false)}
               className="flex-1 h-10 rounded-xl border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm active:scale-95 transition-transform"
             >
-              Cancel
+              Keep Going
+            </button>
+            <button
+              onClick={handleCancelCook}
+              disabled={cancelling}
+              className="flex-1 h-10 rounded-xl border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm active:scale-95 transition-transform disabled:opacity-60"
+            >
+              {cancelling ? '…' : 'Cancel Cook'}
             </button>
             <button
               onClick={handleStartNew}
               disabled={starting}
-              className="flex-1 h-10 rounded-xl bg-need text-white text-sm font-semibold active:scale-95 transition-transform disabled:opacity-60"
+              className="flex-1 h-10 rounded-xl bg-[var(--action-surface)] text-[var(--text-heading)] text-sm font-semibold active:scale-95 transition-transform disabled:opacity-60"
             >
               {starting ? '…' : 'Start New'}
             </button>

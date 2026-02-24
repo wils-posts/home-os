@@ -20,7 +20,7 @@ export default function CookStage() {
   const navigate = useNavigate()
   const {
     cycle, selectedRecipes, cookLog, loading,
-    setStage, startNewCycle,
+    setStage, startNewCycle, cancelCycle,
     setPrepNotes,
     addLogEntry, deleteLogEntry,
   } = useBulkCookData()
@@ -95,6 +95,7 @@ export default function CookStage() {
       currentStage="cook"
       setStage={setStage}
       onStartNew={handleStartNew}
+      onCancelCook={cancelCycle}
       bottomSlot={logInputSlot}
     >
       <div className="flex flex-col h-full px-4 pt-4 pb-2">
@@ -141,7 +142,7 @@ export default function CookStage() {
 
           {cookLog.length === 0 ? (
             <p className="text-sm text-[var(--text-muted)] italic py-4 text-center">
-              Log is empty — add your first entry below.
+              Log is empty.
             </p>
           ) : (
             <div className="flex flex-col gap-1">

@@ -125,6 +125,20 @@ export function useBulkCookData() {
     }
   }
 
+  async function cancelCycle() {
+    if (!cycle) return
+    const { error } = await supabase
+      .from('bulk_cycles')
+      .update({ status: 'archived', archived_at: new Date().toISOString() })
+      .eq('id', cycle.id)
+    if (!error) {
+      setCycle(null)
+      setSelectedRecipes([])
+      setShopItems([])
+      setCookLog([])
+    }
+  }
+
   // ── Plan stage ─────────────────────────────────────────────────────────────
   async function setPlanNotes(text) {
     if (!cycle) return
@@ -311,6 +325,7 @@ export function useBulkCookData() {
     startNewCycle,
     setStage,
     archiveCycle,
+    cancelCycle,
     // Plan
     setPlanNotes,
     addRecipeToCycle,

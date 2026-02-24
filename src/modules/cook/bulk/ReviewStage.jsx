@@ -7,7 +7,7 @@ export default function ReviewStage() {
   const navigate = useNavigate()
   const {
     cycle, loading,
-    setStage, startNewCycle,
+    setStage, startNewCycle, cancelCycle,
     setReviewNotes, archiveCycle,
   } = useBulkCookData()
 
@@ -38,6 +38,7 @@ export default function ReviewStage() {
       currentStage="review"
       setStage={setStage}
       onStartNew={handleStartNew}
+      onCancelCook={cancelCycle}
       hideNext
     >
       {/* Review notes */}

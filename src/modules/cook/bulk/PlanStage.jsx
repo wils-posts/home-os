@@ -7,7 +7,7 @@ export default function PlanStage() {
   const navigate = useNavigate()
   const {
     cycle, selectedRecipes, loading,
-    setStage, startNewCycle,
+    setStage, startNewCycle, cancelCycle,
     addRecipeToCycle, removeRecipeFromCycle,
     setPlanNotes,
   } = useBulkCookData()
@@ -54,6 +54,7 @@ export default function PlanStage() {
       currentStage="plan"
       setStage={setStage}
       onStartNew={handleStartNew}
+      onCancelCook={cancelCycle}
       bottomSlot={planNotesSlot}
     >
       {/* Recipe selection — fills available space and scrolls internally */}

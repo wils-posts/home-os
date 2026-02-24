@@ -7,7 +7,7 @@ export default function ShopStage() {
   const navigate = useNavigate()
   const {
     cycle, selectedRecipes, shopItems, loading,
-    setStage, startNewCycle,
+    setStage, startNewCycle, cancelCycle,
     generateShopList, toggleShopItem, updateShopItem, addShopItem, deleteShopItem,
   } = useBulkCookData()
 
@@ -49,6 +49,7 @@ export default function ShopStage() {
       currentStage="shop"
       setStage={setStage}
       onStartNew={handleStartNew}
+      onCancelCook={cancelCycle}
     >
       {/* Header row */}
       <div className="px-4 pt-4 pb-2">
@@ -56,7 +57,7 @@ export default function ShopStage() {
           Shopping List
           {shopItems.length > 0 && (
             <span className="ml-2 font-normal normal-case tracking-normal">
-              — {shopItems.filter(i => i.checked).length}/{shopItems.length} got
+              — {shopItems.filter(i => i.checked).length}/{shopItems.length}
             </span>
           )}
         </p>
