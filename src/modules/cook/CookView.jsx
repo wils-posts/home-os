@@ -17,21 +17,24 @@ export default function CookView() {
         <MenuButton
           label="Start / Resume Bulk Cook"
           description="Plan and track a cooking session"
+          disabled
         />
         <MenuButton
           label="View Recipe Library"
           description="Browse and manage your recipes"
+          onClick={() => navigate('/cook/recipes')}
         />
       </div>
     </div>
   )
 }
 
-function MenuButton({ label, description }) {
+function MenuButton({ label, description, onClick, disabled }) {
   return (
     <button
-      disabled
-      className="w-full text-left px-5 py-5 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
+      disabled={disabled}
+      onClick={onClick}
+      className="w-full text-left px-5 py-5 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <p className="font-semibold text-[var(--text-heading)]">{label}</p>
       <p className="text-sm text-[var(--text-muted)] mt-1">{description}</p>

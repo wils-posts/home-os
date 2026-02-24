@@ -9,6 +9,9 @@ import TodoView from '../modules/todo/TodoView'
 import ArchiveView from '../modules/todo/ArchiveView'
 import DeciderView from '../modules/decider/DeciderView'
 import CookView from '../modules/cook/CookView'
+import RecipeLibraryView from '../modules/cook/RecipeLibraryView'
+import RecipeDetailView from '../modules/cook/RecipeDetailView'
+import RecipeEditView from '../modules/cook/RecipeEditView'
 
 export default function AppShell() {
   const auth = useAuth()
@@ -52,6 +55,10 @@ export default function AppShell() {
       <Route path="/todo/archive" element={<ArchiveView auth={auth} />} />
       <Route path="/decider" element={<DeciderView />} />
       <Route path="/cook" element={<CookView />} />
+      <Route path="/cook/recipes" element={<RecipeLibraryView />} />
+      <Route path="/cook/recipes/new" element={<RecipeEditView />} />
+      <Route path="/cook/recipes/:id/edit" element={<RecipeEditView />} />
+      <Route path="/cook/recipes/:id" element={<RecipeDetailView />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
