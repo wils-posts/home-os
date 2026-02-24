@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react'
 import { renderStaticWheel, computeSliceBoundaries } from '../lib/wheelRenderer'
 
-export default function WheelCanvas({ items, currentAngle, onSizeChange, colourMode }) {
+export default function WheelCanvas({ items, currentAngle, onSizeChange }) {
   const containerRef = useRef(null)
   const canvasRef = useRef(null)
   const staticWheelRef = useRef(null)
@@ -15,8 +15,8 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
     if (size === 0) return
     const dpr = window.devicePixelRatio || 1
     const radius = size / 2
-    staticWheelRef.current = renderStaticWheel(items, radius, isDark, colourMode, dpr)
-  }, [items, isDark, colourMode])
+    staticWheelRef.current = renderStaticWheel(items, radius, isDark, dpr)
+  }, [items, isDark])
 
   // Draw current frame
   const draw = useCallback((angle) => {
@@ -76,7 +76,7 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
       }
 
       const radius = size / 2
-      staticWheelRef.current = renderStaticWheel(items, radius, isDark, colourMode, dpr)
+      staticWheelRef.current = renderStaticWheel(items, radius, isDark, dpr)
       draw(currentAngle)
 
       if (onSizeChange) onSizeChange(size)
@@ -84,7 +84,7 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
 
     observer.observe(container)
     return () => observer.disconnect()
-  }, [items, isDark, colourMode, currentAngle, draw, onSizeChange])
+  }, [items, isDark, currentAngle, draw, onSizeChange])
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ aspectRatio: '1' }}>

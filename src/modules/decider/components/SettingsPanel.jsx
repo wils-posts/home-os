@@ -55,25 +55,6 @@ export default function SettingsPanel({ settings, onUpdate, onClose }) {
             onChange={v => onUpdate({ celebrationEnabled: v })}
           />
 
-          {/* Colour mode */}
-          <div>
-            <label className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)] block mb-2">Wheel Colours</label>
-            <div className="flex gap-2">
-              {['multi', 'native'].map(mode => (
-                <button
-                  key={mode}
-                  onClick={() => onUpdate({ colourMode: mode })}
-                  className={`flex-1 h-9 rounded-lg border text-sm font-medium transition-colors ${
-                    settings.colourMode === mode
-                      ? 'border-[var(--action-surface)] bg-[var(--action-surface)] text-[var(--text-heading)]'
-                      : 'border-[var(--border-subtle)] text-[var(--text-muted)]'
-                  }`}
-                >
-                  {mode === 'multi' ? 'Multicolour' : 'Native'}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>

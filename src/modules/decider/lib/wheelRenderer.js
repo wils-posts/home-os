@@ -1,9 +1,9 @@
-import { generateSliceColors, getNativeSliceColors } from './colorPalette'
+import { generateSliceColors } from './colorPalette'
 import { drawSliceLabel } from './textLayout'
 
 const OVERDRAW = 0.015 // radians — closes anti-alias seams between slices
 
-export function renderStaticWheel(slices, radius, isDark = false, colourMode = 'multi', dpr = 1) {
+export function renderStaticWheel(slices, radius, isDark = false, dpr = 1) {
   const diameter = radius * 2
   const canvas = document.createElement('canvas')
   canvas.width = diameter * dpr
@@ -26,9 +26,7 @@ export function renderStaticWheel(slices, radius, isDark = false, colourMode = '
   }
 
   const totalWeight = slices.reduce((sum, s) => sum + s.weight, 0)
-  const colors = colourMode === 'native'
-    ? getNativeSliceColors(slices.length)
-    : generateSliceColors(slices.length, isDark)
+  const colors = generateSliceColors(slices.length)
 
   let currentAngle = 0
   for (let i = 0; i < slices.length; i++) {

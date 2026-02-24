@@ -113,7 +113,6 @@ export default function DeciderView() {
               <WheelCanvas
                 items={items}
                 currentAngle={currentAngle}
-                colourMode={settings.colourMode}
                 onSizeChange={setWheelSize}
               />
               {celebrating && wheelSize > 0 && (
