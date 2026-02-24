@@ -4,12 +4,13 @@ import { drawSliceLabel } from './textLayout'
 const SLICE_BORDER_WIDTH = 1.5
 const SLICE_BORDER_COLOR = 'rgba(0,0,0,0.15)'
 
-export function renderStaticWheel(slices, radius, isDark = false, colourMode = 'multi') {
+export function renderStaticWheel(slices, radius, isDark = false, colourMode = 'multi', dpr = 1) {
   const diameter = radius * 2
   const canvas = document.createElement('canvas')
-  canvas.width = diameter
-  canvas.height = diameter
+  canvas.width = diameter * dpr
+  canvas.height = diameter * dpr
   const ctx = canvas.getContext('2d')
+  ctx.scale(dpr, dpr)
   const center = radius
 
   if (slices.length === 0) {

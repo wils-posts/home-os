@@ -86,9 +86,9 @@ function ToggleSetting({ label, value, onChange }) {
       <span className="text-sm text-[var(--text-primary)]">{label}</span>
       <button
         onClick={() => onChange(!value)}
-        className={`relative w-11 h-6 rounded-full transition-colors ${value ? 'bg-ok' : 'bg-[var(--surface-2)]'}`}
+        className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${value ? 'bg-ok' : 'bg-[var(--surface-2)]'}`}
       >
-        <span className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-transform ${value ? 'translate-x-6' : 'translate-x-1'}`} />
+        <span className={`absolute top-1 left-0 w-4 h-4 rounded-full bg-white shadow transition-transform ${value ? 'translate-x-6' : 'translate-x-1'}`} />
       </button>
     </div>
   )

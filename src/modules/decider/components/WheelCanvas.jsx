@@ -13,8 +13,9 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
   useEffect(() => {
     const size = sizeRef.current
     if (size === 0) return
+    const dpr = window.devicePixelRatio || 1
     const radius = size / 2
-    staticWheelRef.current = renderStaticWheel(items, radius, isDark, colourMode)
+    staticWheelRef.current = renderStaticWheel(items, radius, isDark, colourMode, dpr)
   }, [items, isDark, colourMode])
 
   // Draw current frame
@@ -22,23 +23,24 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
     const canvas = canvasRef.current
     if (!canvas || !staticWheelRef.current) return
     const size = sizeRef.current
+    const dpr = window.devicePixelRatio || 1
     const ctx = canvas.getContext('2d')
-    ctx.clearRect(0, 0, size, size)
+    ctx.clearRect(0, 0, size * dpr, size * dpr)
 
-    const center = size / 2
+    const centerPx = size / 2 * dpr
 
-    // Draw rotating wheel
+    // Draw rotating wheel — offscreen canvas is size*dpr × size*dpr physical pixels
     ctx.save()
-    ctx.translate(center, center)
+    ctx.translate(centerPx, centerPx)
     ctx.rotate(angle)
-    ctx.drawImage(staticWheelRef.current, -center, -center)
+    ctx.drawImage(staticWheelRef.current, -centerPx, -centerPx, size * dpr, size * dpr)
     ctx.restore()
 
     // Draw fixed pointer (red triangle at top)
-    const pW = size * 0.045
-    const pH = size * 0.07
+    const pW = size * 0.045 * dpr
+    const pH = size * 0.07 * dpr
     ctx.save()
-    ctx.translate(center, 4)
+    ctx.translate(centerPx, 4 * dpr)
     ctx.beginPath()
     ctx.moveTo(0, pH)
     ctx.lineTo(-pW / 2, 0)
@@ -66,14 +68,15 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
       if (size === sizeRef.current) return
 
       sizeRef.current = size
+      const dpr = window.devicePixelRatio || 1
       const canvas = canvasRef.current
       if (canvas) {
-        canvas.width = size
-        canvas.height = size
+        canvas.width = size * dpr
+        canvas.height = size * dpr
       }
 
       const radius = size / 2
-      staticWheelRef.current = renderStaticWheel(items, radius, isDark, colourMode)
+      staticWheelRef.current = renderStaticWheel(items, radius, isDark, colourMode, dpr)
       draw(currentAngle)
 
       if (onSizeChange) onSizeChange(size)
