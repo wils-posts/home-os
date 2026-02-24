@@ -1,29 +1,30 @@
 const LABEL_FONT_FAMILY = 'Inter, system-ui, sans-serif'
-const LABEL_FONT_SIZE_MAX = 15
-const LABEL_FONT_SIZE_MIN = 10
 const LABEL_MAX_WIDTH_RATIO = 0.38
 const MIN_SLICE_ARC_FOR_LABEL = 20
 
-export function drawSliceLabel(ctx, label, centerX, centerY, radius, startAngle, sliceAngle) {
+// Returns a consistent font size based on how many slices there are
+function getFontSize(sliceCount) {
+  if (sliceCount <= 4) return 14
+  if (sliceCount <= 6) return 13
+  if (sliceCount <= 8) return 12
+  return 11
+}
+
+export function drawSliceLabel(ctx, label, centerX, centerY, radius, startAngle, sliceAngle, sliceCount = 8) {
   const arcLength = sliceAngle * radius
   if (arcLength < MIN_SLICE_ARC_FOR_LABEL) return
 
   const midAngle = startAngle + sliceAngle / 2
   const maxLabelWidth = radius * LABEL_MAX_WIDTH_RATIO
+  const fontSize = getFontSize(sliceCount)
 
-  let fontSize = LABEL_FONT_SIZE_MAX
   ctx.font = `600 ${fontSize}px ${LABEL_FONT_FAMILY}`
 
   let displayLabel = label
-  let measured = ctx.measureText(displayLabel)
-
-  while (measured.width > maxLabelWidth && fontSize > LABEL_FONT_SIZE_MIN) {
-    fontSize -= 1
-    ctx.font = `600 ${fontSize}px ${LABEL_FONT_FAMILY}`
-    measured = ctx.measureText(displayLabel)
+  while (displayLabel.length > 1 && ctx.measureText(displayLabel).width > maxLabelWidth) {
+    displayLabel = displayLabel.slice(0, -1)
   }
-
-  if (measured.width > maxLabelWidth) {
+  if (displayLabel !== label) {
     while (displayLabel.length > 1 && ctx.measureText(displayLabel + '…').width > maxLabelWidth) {
       displayLabel = displayLabel.slice(0, -1)
     }

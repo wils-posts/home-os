@@ -1,8 +1,7 @@
 import { generateSliceColors, getNativeSliceColors } from './colorPalette'
 import { drawSliceLabel } from './textLayout'
 
-const SLICE_BORDER_WIDTH = 1.5
-const SLICE_BORDER_COLOR = 'rgba(0,0,0,0.15)'
+const SLICE_GAP_COLOR = 'rgba(0,0,0,0.25)'
 
 export function renderStaticWheel(slices, radius, isDark = false, colourMode = 'multi', dpr = 1) {
   const diameter = radius * 2
@@ -38,28 +37,34 @@ export function renderStaticWheel(slices, radius, isDark = false, colourMode = '
 
     ctx.beginPath()
     ctx.moveTo(center, center)
-    ctx.arc(center, center, radius - 2, currentAngle, currentAngle + sliceAngle)
+    ctx.arc(center, center, radius - 1, currentAngle, currentAngle + sliceAngle)
     ctx.closePath()
     ctx.fillStyle = colors[i % colors.length]
     ctx.fill()
 
-    ctx.strokeStyle = SLICE_BORDER_COLOR
-    ctx.lineWidth = SLICE_BORDER_WIDTH
+    // Thin gap lines between slices only (radial lines from center)
+    ctx.save()
+    ctx.strokeStyle = SLICE_GAP_COLOR
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    ctx.moveTo(center, center)
+    ctx.lineTo(
+      center + Math.cos(currentAngle) * (radius - 1),
+      center + Math.sin(currentAngle) * (radius - 1)
+    )
     ctx.stroke()
+    ctx.restore()
 
-    drawSliceLabel(ctx, slice.label, center, center, radius, currentAngle, sliceAngle)
+    drawSliceLabel(ctx, slice.label, center, center, radius, currentAngle, sliceAngle, slices.length)
 
     currentAngle += sliceAngle
   }
 
-  // Centre circle
+  // Centre dot
   ctx.beginPath()
-  ctx.arc(center, center, radius * 0.06, 0, Math.PI * 2)
-  ctx.fillStyle = isDark ? '#1a1a2e' : '#ffffff'
+  ctx.arc(center, center, radius * 0.04, 0, Math.PI * 2)
+  ctx.fillStyle = isDark ? '#18181b' : '#f9fafb'
   ctx.fill()
-  ctx.strokeStyle = isDark ? '#444' : '#ccc'
-  ctx.lineWidth = 2
-  ctx.stroke()
 
   return canvas
 }

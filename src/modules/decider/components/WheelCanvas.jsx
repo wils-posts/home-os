@@ -36,15 +36,15 @@ export default function WheelCanvas({ items, currentAngle, onSizeChange, colourM
     ctx.drawImage(staticWheelRef.current, -centerPx, -centerPx, size * dpr, size * dpr)
     ctx.restore()
 
-    // Draw fixed pointer (red triangle at top)
-    const pW = size * 0.045 * dpr
-    const pH = size * 0.07 * dpr
+    // Draw fixed pointer (red triangle, base at top, tip pointing down into wheel)
+    const pW = size * 0.05 * dpr
+    const pH = size * 0.065 * dpr
     ctx.save()
-    ctx.translate(centerPx, 4 * dpr)
+    ctx.translate(centerPx, 0)
     ctx.beginPath()
-    ctx.moveTo(0, pH)
-    ctx.lineTo(-pW / 2, 0)
-    ctx.lineTo(pW / 2, 0)
+    ctx.moveTo(0, pH)          // tip points down into wheel
+    ctx.lineTo(-pW / 2, 0)    // top-left corner
+    ctx.lineTo(pW / 2, 0)     // top-right corner
     ctx.closePath()
     ctx.fillStyle = '#ef4444'
     ctx.fill()
