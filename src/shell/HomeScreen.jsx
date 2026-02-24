@@ -64,10 +64,12 @@ const TOOLS = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="2" x2="12" y2="12" />
-        <line x1="12" y1="12" x2="18" y2="7" />
-        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+        <rect x="3" y="3" width="18" height="18" rx="3" />
+        <circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="8" cy="16" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
