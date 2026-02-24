@@ -49,6 +49,28 @@ const TOOLS = [
     ),
   },
   {
+    id: 'cook',
+    label: 'HomeCook',
+    route: '/cook',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 8h14a1 1 0 0 1 1 1v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z" />
+        <path d="M9 8V6.5a3 3 0 0 1 6 0V8" />
+        <path d="M2 10.5h2M20 10.5h2" />
+      </svg>
+    ),
+  },
+  {
     id: 'decider',
     label: 'HomeDecider',
     route: '/decider',
@@ -88,7 +110,7 @@ export default function HomeScreen({ auth }) {
       <div className="px-6 pt-8 pb-6 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-[var(--text-heading)]">HomeOS</h1>
-          <p className="text-[var(--text-muted)] text-sm mt-1">Version 1.4</p>
+          <p className="text-[var(--text-muted)] text-sm mt-1">Version 1.5</p>
         </div>
         <div className="flex items-center gap-2 mt-1">
           <button

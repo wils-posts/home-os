@@ -8,6 +8,7 @@ import ShoppingView from '../modules/stock/ShoppingView'
 import TodoView from '../modules/todo/TodoView'
 import ArchiveView from '../modules/todo/ArchiveView'
 import DeciderView from '../modules/decider/DeciderView'
+import CookView from '../modules/cook/CookView'
 
 export default function AppShell() {
   const auth = useAuth()
@@ -50,6 +51,7 @@ export default function AppShell() {
       <Route path="/todo" element={<TodoView auth={auth} />} />
       <Route path="/todo/archive" element={<ArchiveView auth={auth} />} />
       <Route path="/decider" element={<DeciderView />} />
+      <Route path="/cook" element={<CookView />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
