@@ -48,7 +48,7 @@ export default function RecipeLibraryView() {
       style={{ height: '100dvh' }}
     >
       <TopBar
-        centre={<span className="text-sm font-semibold text-[var(--text-heading)]">Recipe Library</span>}
+        centre={null}
         right={newButton}
       />
 
