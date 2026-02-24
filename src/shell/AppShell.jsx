@@ -12,6 +12,12 @@ import CookView from '../modules/cook/CookView'
 import RecipeLibraryView from '../modules/cook/RecipeLibraryView'
 import RecipeDetailView from '../modules/cook/RecipeDetailView'
 import RecipeEditView from '../modules/cook/RecipeEditView'
+import BulkCookView from '../modules/cook/BulkCookView'
+import PlanStage from '../modules/cook/bulk/PlanStage'
+import ShopStage from '../modules/cook/bulk/ShopStage'
+import PrepStage from '../modules/cook/bulk/PrepStage'
+import CookStage from '../modules/cook/bulk/CookStage'
+import ReviewStage from '../modules/cook/bulk/ReviewStage'
 
 export default function AppShell() {
   const auth = useAuth()
@@ -59,6 +65,12 @@ export default function AppShell() {
       <Route path="/cook/recipes/new" element={<RecipeEditView />} />
       <Route path="/cook/recipes/:id/edit" element={<RecipeEditView />} />
       <Route path="/cook/recipes/:id" element={<RecipeDetailView />} />
+      <Route path="/cook/bulk" element={<BulkCookView />} />
+      <Route path="/cook/bulk/plan"   element={<PlanStage />} />
+      <Route path="/cook/bulk/shop"   element={<ShopStage />} />
+      <Route path="/cook/bulk/prep"   element={<PrepStage />} />
+      <Route path="/cook/bulk/cook"   element={<CookStage />} />
+      <Route path="/cook/bulk/review" element={<ReviewStage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

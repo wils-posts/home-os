@@ -17,7 +17,7 @@ export default function CookView() {
         <MenuButton
           label="Start / Resume Bulk Cook"
           description="Plan and track a cooking session"
-          disabled
+          onClick={() => navigate('/cook/bulk')}
         />
         <MenuButton
           label="View Recipe Library"
