@@ -111,9 +111,25 @@ const TOOLS = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M19 8C19 5.79 16.31 4 13 4H11C7.69 4 5 5.79 5 8C5 8 5 8.01 5 8C5 10.21 7.69 12 11 12H13C16.31 12 19 10.21 19 8Z" />
-        <path d="M5 8V16C5 18.21 7.69 20 11 20H13C16.31 20 19 18.21 19 16V8" />
-        <path d="M5 12C5 14.21 7.69 16 11 16H13C16.31 16 19 14.21 19 12" />
+        {/* Body */}
+        <circle cx="11" cy="13" r="7" />
+        {/* Snout */}
+        <ellipse cx="17.5" cy="13" rx="1.8" ry="1.4" />
+        {/* Nostril dots */}
+        <circle cx="17" cy="12.6" r="0.35" fill="currentColor" stroke="none" />
+        <circle cx="18" cy="12.6" r="0.35" fill="currentColor" stroke="none" />
+        {/* Ear */}
+        <path d="M8.5 6.5 L7 3.5 L11 6" />
+        {/* Eye */}
+        <circle cx="13" cy="10.5" r="0.6" fill="currentColor" stroke="none" />
+        {/* Coin slot */}
+        <path d="M9.5 6.2 L12.5 6.2" strokeWidth="1.8" />
+        {/* Legs */}
+        <line x1="8" y1="19.5" x2="8" y2="22" />
+        <line x1="11" y1="20" x2="11" y2="22" />
+        <line x1="14" y1="19.5" x2="14" y2="22" />
+        {/* Tail */}
+        <path d="M4 12 Q2 10 3.5 8.5" />
       </svg>
     ),
   },
