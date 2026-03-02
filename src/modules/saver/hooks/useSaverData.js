@@ -158,10 +158,8 @@ export function useSaverData() {
 
   async function resetGoal() {
     if (!goal) return
-    await supabase
-      .from('saver_contributions')
-      .delete()
-      .eq('goal_id', goal.id)
+    await supabase.from('saver_goals').delete().eq('id', goal.id)
+    setGoal(null)
     setContributions([])
   }
 

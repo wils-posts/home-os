@@ -98,7 +98,7 @@ export default function SettingsPanel({ goal, onUpdate, onReset, onClose }) {
             ) : (
               <div className="flex flex-col gap-2">
                 <p className="text-xs text-[var(--text-muted)] text-center">
-                  This clears all contributions. Goal settings are kept.
+                  This deletes the goal and all contributions. You'll be prompted to set a new goal.
                 </p>
                 <div className="flex gap-2">
                   <button

@@ -121,21 +121,17 @@ export default function SaverView() {
           </div>
 
           {/* Progress bar */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-              <div className="flex-1 h-3 bg-[var(--surface-2)] rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[var(--action-surface)] rounded-full transition-all duration-500"
-                  style={{ width: `${percent}%` }}
-                />
-              </div>
-              <span className="text-sm text-[var(--text-muted)] shrink-0 w-10 text-right">
-                {Math.round(percent)}%
-              </span>
+          <div className="flex flex-col gap-1.5">
+            <div className="w-full h-3 bg-[var(--surface-2)] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[var(--action-surface)] rounded-full transition-all duration-500"
+                style={{ width: `${percent}%` }}
+              />
             </div>
-            <p className="text-xs text-[var(--text-muted)] text-center">
-              Deadline: {fmtDate(goal.deadline)}
-            </p>
+            <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
+              <span>Deadline: {fmtDate(goal.deadline)}</span>
+              <span>{Math.round(percent)}%</span>
+            </div>
           </div>
 
           {/* Goal status */}
@@ -147,15 +143,15 @@ export default function SaverView() {
           {/* Contributor cards */}
           <div className="grid grid-cols-2 gap-3">
             {[
-              { key: 'C', total: cTotal, streak: cStreak, weekTotal: cWeekTotal },
-              { key: 'S', total: sTotal, streak: sStreak, weekTotal: sWeekTotal },
-            ].map(({ key, total, streak, weekTotal }) => (
+              { key: 'C', total: cTotal, streak: cStreak, weekTotal: cWeekTotal, colour: 'bg-blue-500' },
+              { key: 'S', total: sTotal, streak: sStreak, weekTotal: sWeekTotal, colour: 'bg-green-500' },
+            ].map(({ key, total, streak, weekTotal, colour }) => (
               <div
                 key={key}
                 className="bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] p-4 flex flex-col gap-2"
               >
                 <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-full bg-[var(--action-surface)] flex items-center justify-center text-sm font-bold text-[var(--text-heading)] shrink-0">
+                  <div className={`h-8 w-8 rounded-full ${colour} flex items-center justify-center text-sm font-bold text-white shrink-0`}>
                     {key}
                   </div>
                   <span className="font-semibold text-[var(--text-heading)] text-sm">{fmt(total)}</span>
