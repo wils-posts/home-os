@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import TopBar from '../../../shell/TopBar'
 
 export default function GoalSetupModal({ onCreate }) {
   const [target, setTarget] = useState('')
@@ -16,11 +17,12 @@ export default function GoalSetupModal({ onCreate }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-[var(--surface-0)] flex flex-col items-center justify-center px-6">
+    <div className="fixed inset-0 z-50 bg-[var(--surface-0)] flex flex-col">
+      <TopBar centre={null} right={null} />
+      <div className="flex-1 flex items-center justify-center px-6">
       <div className="w-full max-w-sm flex flex-col gap-6">
         <div className="text-center">
           <h2 className="text-xl font-bold text-[var(--text-heading)]">Set a Goal</h2>
-          <p className="text-sm text-[var(--text-muted)] mt-1">What are you saving towards?</p>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -75,6 +77,7 @@ export default function GoalSetupModal({ onCreate }) {
         >
           {submitting ? 'Creating…' : 'Create Goal'}
         </button>
+      </div>
       </div>
     </div>
   )
