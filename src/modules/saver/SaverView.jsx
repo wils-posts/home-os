@@ -118,6 +118,7 @@ export default function SaverView() {
           <div className="flex flex-col items-center pt-6 pb-2">
             <p className="text-xs text-[var(--text-muted)] uppercase tracking-wide mb-2">Total Saved</p>
             <p className="text-5xl font-bold text-[var(--text-heading)]">{fmt(totalSaved)}</p>
+            <p className="text-sm text-[var(--text-muted)] mt-1">of {fmt(goal.target_amount)}</p>
           </div>
 
           {/* Progress bar */}
