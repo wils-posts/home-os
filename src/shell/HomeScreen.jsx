@@ -95,6 +95,28 @@ const TOOLS = [
       </svg>
     ),
   },
+  {
+    id: 'saver',
+    label: 'HomeSaver',
+    route: '/saver',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M19 8C19 5.79 16.31 4 13 4H11C7.69 4 5 5.79 5 8C5 8 5 8.01 5 8C5 10.21 7.69 12 11 12H13C16.31 12 19 10.21 19 8Z" />
+        <path d="M5 8V16C5 18.21 7.69 20 11 20H13C16.31 20 19 18.21 19 16V8" />
+        <path d="M5 12C5 14.21 7.69 16 11 16H13C16.31 16 19 14.21 19 12" />
+      </svg>
+    ),
+  },
 ]
 
 export default function HomeScreen({ auth }) {
