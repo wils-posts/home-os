@@ -167,18 +167,6 @@ export default function HomeScreen({ auth }) {
       </div>
 
       <div className="px-4 grid grid-cols-2 gap-3">
-        {/* Standard tool cards */}
-        {TOOLS.map(tool => (
-          <button
-            key={tool.id}
-            onClick={() => navigate(tool.route)}
-            className="flex flex-col items-center justify-center gap-3 p-6 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
-          >
-            <span className="text-[var(--text-muted)]">{tool.icon}</span>
-            <span className="text-sm font-semibold text-[var(--text-primary)]">{tool.label}</span>
-          </button>
-        ))}
-
         {/* HomeTodo card — live task counts instead of icon */}
         <button
           onClick={() => navigate('/todo')}
@@ -207,6 +195,19 @@ export default function HomeScreen({ auth }) {
 
           <span className="text-sm font-semibold text-[var(--text-primary)]">HomeTodo</span>
         </button>
+
+        {/* Standard tool cards */}
+        {TOOLS.map(tool => (
+          <button
+            key={tool.id}
+            onClick={() => navigate(tool.route)}
+            className="flex flex-col items-center justify-center gap-3 p-6 bg-[var(--surface-1)] rounded-2xl border border-[var(--border-subtle)] active:scale-95 transition-transform"
+          >
+            <span className="text-[var(--text-muted)]">{tool.icon}</span>
+            <span className="text-sm font-semibold text-[var(--text-primary)]">{tool.label}</span>
+          </button>
+        ))}
+
       </div>
     </div>
   )
