@@ -128,9 +128,11 @@ export default function SaverView() {
                 style={{ width: `${percent}%` }}
               />
             </div>
-            <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
-              <span>Deadline: {fmtDate(goal.deadline)}</span>
-              <span>{Math.round(percent)}%</span>
+            <div className="flex items-center justify-between text-xs">
+              <span className={new Date(goal.deadline + 'T23:59:59') < new Date() ? 'text-need' : 'text-[var(--text-muted)]'}>
+                Deadline: {fmtDate(goal.deadline)}
+              </span>
+              <span className="text-[var(--text-muted)]">{Math.round(percent)}%</span>
             </div>
           </div>
 
