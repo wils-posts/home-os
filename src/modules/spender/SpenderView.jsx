@@ -94,7 +94,7 @@ export default function SpenderView() {
             onUpdateBudget={updateBudget}
           />
 
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto min-h-0">
             {entries.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center px-6 pb-20">
                 <p className="text-[var(--text-muted)] text-sm">No spending logged yet.</p>

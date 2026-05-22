@@ -80,6 +80,11 @@ export function useSpenderData() {
     fetchAll()
   }
 
+  async function deletePeriod(id) {
+    await supabase.from('spender_periods').delete().eq('id', id)
+    fetchAll()
+  }
+
   async function closePeriod(pushToSavings) {
     if (!activePeriod) return
     const totalSpent = entries.reduce((sum, e) => sum + parseFloat(e.amount), 0)
@@ -110,6 +115,7 @@ export function useSpenderData() {
     updateBudget,
     addEntry,
     deleteEntry,
+    deletePeriod,
     closePeriod,
   }
 }
