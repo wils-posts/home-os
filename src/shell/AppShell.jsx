@@ -20,6 +20,8 @@ import ReviewStage from '../modules/cook/bulk/ReviewStage'
 import BulkArchiveView from '../modules/cook/bulk/BulkArchiveView'
 import SaverView from '../modules/saver/SaverView'
 import SaverArchiveView from '../modules/saver/ArchiveView'
+import SpenderView from '../modules/spender/SpenderView'
+import SpenderArchiveView from '../modules/spender/SpenderArchiveView'
 
 export default function AppShell() {
   const auth = useAuth()
@@ -75,6 +77,8 @@ export default function AppShell() {
       <Route path="/cook/bulk/archive" element={<BulkArchiveView />} />
       <Route path="/saver" element={<SaverView />} />
       <Route path="/saver/archive" element={<SaverArchiveView />} />
+      <Route path="/spender" element={<SpenderView />} />
+      <Route path="/spender/archive" element={<SpenderArchiveView />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
