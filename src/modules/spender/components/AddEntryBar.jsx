@@ -22,7 +22,7 @@ export default function AddEntryBar({ onAdd }) {
 
   return (
     <div className="shrink-0 border-t border-[var(--border-subtle)] bg-[var(--surface-1)] px-4 py-3 flex items-center gap-2">
-      <div className="flex items-center h-11 px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-input)] gap-1.5 w-28 shrink-0">
+      <div className="flex items-center h-11 px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-input)] gap-1.5 w-24 shrink-0">
         <span className="text-[var(--text-muted)]">£</span>
         <input
           type="number"
@@ -41,7 +41,7 @@ export default function AddEntryBar({ onAdd }) {
         value={label}
         onChange={e => setLabel(e.target.value)}
         onKeyDown={handleKeyDown}
-        className="flex-1 h-11 px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-input)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
+        className="flex-1 min-w-0 h-11 px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-input)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
       />
       <button
         onClick={handleSubmit}

@@ -72,7 +72,7 @@ export default function SpenderView() {
 
   return (
     <div
-      className="bg-[var(--surface-0)] text-[var(--text-primary)] max-w-md mx-auto flex flex-col"
+      className="bg-[var(--surface-0)] text-[var(--text-primary)] max-w-md mx-auto flex flex-col overflow-hidden"
       style={{ height: '100dvh' }}
     >
       <TopBar centre={null} right={activePeriod && !showNewBudget ? rightSlot : null} />
